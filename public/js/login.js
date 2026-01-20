@@ -32,7 +32,7 @@ let login= true;
         if(login){
             var xhr = new XMLHttpRequest();
 
-            xhr.open("POST", "https://nexus-api-ill3.onrender.com/api/users/login", true);
+            xhr.open("POST", "https://nexus-api-ill3.onrender.com//api/auth/login", true);
 
             xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
             xhr.withCredentials= true;
