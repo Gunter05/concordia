@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paramètres de compte sur Concordia</title>
+<!-- Liens pour les icônes -->
+<link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
+<link href='https://cdn.boxicons.com/3.0.6/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+</head>
+<body>
+    <!-- Menu latéral -->
+    <aside>
+        <div class="app-logo">
+            <img src ="logo_concordia.svg" alt="Logo Concordia">
+            <p>Connexions étudiantes</p>
+        </div>
+        <nav>
+            <ul>
+                <li>
+                    <a href="#" id="nav-discover">Découvrir</a>
+                </li>
+                <li>
+                    <a href="#" id="nav-matches">Matches<span id="matches-count"></span></a>
+                </li>
+                <li>
+                    <a href="#" id="nav-messages">Messages</a>
+                </li>
+                <li class="active">
+                    <a href="#" id="nav-settings">Paramètres</a>
+                </li>
+            </ul>
+        </nav>
+        <!-- Utilisateur connecté -->
+         <div id="sidebar-user">
+            <img id="sidebar-avatar" src="" alt="Photot utilisateur">
+            <div>
+                <p id="sidebar-name"></p>
+                <small id="sidebar-info"></small>
+            </div>
+         </div>
+    </aside>
+        <!-- Contenu principal -->
+         <main>
+            <!-- Titre -->
+             <header>
+                <h1>Paramètres du compte</h1>
+                <p>Gérer vos informations personnelles et vos préférences de sécurité</p>
+             </header>
+             <!-- Carte profil -->
+              <section id="profile-card">
+                <div class="profile-header">
+                    <img id="profile-avatar" src="" alt="Photo de profil">
+                    <div>
+                        <h2 id="profile-name"></h2>
+                        <p id="profile-meta"></p>
+                        <p id="profile-last-login"></p>
+                    </div>
+                    <button id="change-photo-btn">Changer la photo</button>
+                </div>
+              </section>
+              <!-- Informations publiques -->
+               <section id="public-info">
+                    <h3>Informations publiques</h3>
+                    <div class="form-group">
+                        <label for="full-name">Nom complet</label>
+                        <input type="text" id="fullname" name="fullname" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="university">Université</label>
+                        <input type="text" id="university" name="university" value="">
+                    </div>
+                    <div class="form-group">
+                        <label for="bio">Bio</label>
+                        <textarea id="bio" name="bio" maxlength="300"></textarea>
+                        <div id="bio-counter"></div>
+                    </div>
+               </section>
+               <!-- Securité -->
+                <section id="security-section">
+                    <h3>Sécurité et connexion</h3>
+                    <div class="form-group">
+                        <label for="email">Email actuel</label>
+                        <input type="email" id="email" name="email" value="" readonly>
+                    </div>
+                    <button id="change-email-btn">Changer l'adresse mail</button>
+                    <div class="form-group">
+                        <label for="current-password">Mot de passe actuel</label>
+                        <input type="password" id="current-password" name="current-password" >
+                    </div>
+                    <div class="form-group">
+                        <label for="new-password"> Nouveau Mot de passe </label>
+                        <input type="password" id="new-password" name="new-password" >
+                    </div>
+                    <div class="form-group">
+                        <label for="confirm-password"> Confirmer le  Mot de passe </label>
+                        <input type="password" id="confirm-password" name="confirm-password" >
+                    </div>
+                    <button id="update-password-btn">Mettre à jour le mot de passe</button>
+                </section>
+         </main>
+</body>
+</html>

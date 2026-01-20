@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<!-- Page de test pour vérifier la connexion frontend-backend -->
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Connexion API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', -apple-system, sans-serif;
+            background: linear-gradient(135deg, #7c3aed 0%, #607afb 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            padding: 40px;
+            max-width: 600px;
+            width: 100%;
+        }
+        
+        h1 {
+            font-size: 28px;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 14px;
+        }
+        
+        .test-section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f5f5f7;
+            border-radius: 8px;
+            border-left: 4px solid #7c3aed;
+        }
+        
+        .test-section h2 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #1a1a1a;
+            margin-bottom: 15px;
+        }
+        
+        .test-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 14px;
+        }
+        
+        .status-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 12px;
+        }
+        
+        .status-icon.success {
+            background: #10b981;
+        }
+        
+        .status-icon.error {
+            background: #ef4444;
+        }
+        
+        .status-icon.loading {
+            background: #f59e0b;
+        }
+        
+        .status-text {
+            flex: 1;
+        }
+        
+        .status-value {
+            color: #7c3aed;
+            font-weight: 600;
+        }
+        
+        button {
+            background: linear-gradient(135deg, #7c3aed 0%, #607afb 100%);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            font-size: 14px;
+            transition: transform 0.2s;
+            width: 100%;
+            margin-top: 20px;
+        }
+        
+        button:hover {
+            transform: translateY(-2px);
+        }
+        
+        .output {
+            background: #1a1a1a;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Courier New', monospace;
+            font-size: 12px;
+            margin-top: 15px;
+            max-height: 200px;
+            overflow-y: auto;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔌 Test Connexion API</h1>
+        <p class="subtitle">Vérifie que le frontend et backend communiquent correctement</p>
+        
+        <!-- Section Serveur -->
+        <div class="test-section">
+            <h2>📡 État du Serveur</h2>
+            <div class="test-item">
+                <div class="status-icon loading">⏳</div>
+                <div class="status-text">
+                    Serveur backend: <span id="server-status" class="status-value">Vérification...</span>
+                </div>
+            </div>
+            <div class="test-item">
+                <div class="status-icon loading">⏳</div>
+                <div class="status-text">
+                    Base de données: <span id="db-status" class="status-value">Vérification...</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Section Routes API -->
+        <div class="test-section">
+            <h2>🛣️ Routes Disponibles</h2>
+            <div class="test-item">
+                <div class="status-icon loading">⏳</div>
+                <div class="status-text">
+                    POST /api/auth/login: <span id="route-login" class="status-value">—</span>
+                </div>
+            </div>
+            <div class="test-item">
+                <div class="status-icon loading">⏳</div>
+                <div class="status-text">
+                    GET /api/auth/me: <span id="route-me" class="status-value">—</span>
+                </div>
+            </div>
+            <div class="test-item">
+                <div class="status-icon loading">⏳</div>
+                <div class="status-text">
+                    GET /api/search/profiles: <span id="route-search" class="status-value">—</span>
+                </div>
+            </div>
+            <div class="test-item">
+                <div class="status-icon loading">⏳</div>
+                <div class="status-text">
+                    GET /api/chat/conversations: <span id="route-chat" class="status-value">—</span>
+                </div>
+            </div>
+        </div>
+        
+        <button onclick="runTests()">🧪 Lancer les tests</button>
+        
+        <div class="output" id="output"></div>
+    </div>
+    
+    <script>
+        const log = (msg) => {
+            const output = document.getElementById('output');
+            output.innerHTML += msg + '\n';
+            output.scrollTop = output.scrollHeight;
+        };
+        
+        const updateStatus = (elementId, status, message) => {
+            const element = document.getElementById(elementId);
+            if (element) {
+                const icon = element.parentElement.querySelector('.status-icon');
+                if (status === 'success') {
+                    icon.className = 'status-icon success';
+                    icon.textContent = '✓';
+                } else if (status === 'error') {
+                    icon.className = 'status-icon error';
+                    icon.textContent = '✗';
+                }
+                element.textContent = message;
+            }
+        };
+        
+        async function runTests() {
+            document.getElementById('output').innerHTML = '';
+            log('🧪 Démarrage des tests...\n');
+            
+            // Test 1: Serveur
+            log('[1/4] Test serveur...');
+            try {
+                const response = await fetch('/');
+                const data = await response.json();
+                log(`✓ Serveur actif: ${data.message}`);
+                log(`✓ Status: ${data.status}`);
+                log(`✓ DB connectée: ${data.db_connected ? 'Oui' : 'Non'}\n`);
+                updateStatus('server-status', 'success', 'Actif');
+                updateStatus('db-status', data.db_connected ? 'success' : 'error', 
+                    data.db_connected ? 'Connectée' : 'Erreur');
+            } catch (err) {
+                log(`✗ Erreur serveur: ${err.message}\n`);
+                updateStatus('server-status', 'error', 'Erreur');
+            }
+            
+            // Test 2: Routes
+            log('[2/4] Test des routes...');
+            const routes = [
+                { name: 'Login', method: 'POST', url: '/api/auth/login', elementId: 'route-login' },
+                { name: 'Auth Me', method: 'GET', url: '/api/auth/me', elementId: 'route-me' },
+                { name: 'Search', method: 'GET', url: '/api/search/profiles', elementId: 'route-search' },
+                { name: 'Chat', method: 'GET', url: '/api/chat/conversations', elementId: 'route-chat' }
+            ];
+            
+            for (const route of routes) {
+                try {
+                    const response = await fetch(route.url, { method: route.method });
+                    // 401 ou 403 = route existe mais auth requise
+                    if (response.status === 401 || response.status === 403 || response.ok) {
+                        log(`✓ ${route.name} (${response.status})`);
+                        updateStatus(route.elementId, 'success', `Disponible (${response.status})`);
+                    } else {
+                        log(`⚠ ${route.name} (${response.status})`);
+                        updateStatus(route.elementId, 'error', `Erreur ${response.status}`);
+                    }
+                } catch (err) {
+                    log(`✗ ${route.name}: ${err.message}`);
+                    updateStatus(route.elementId, 'error', 'Erreur');
+                }
+            }
+            
+            log('\n✅ Tests terminés!');
+            log('\n💡 Prochaines étapes:');
+            log('1. Vérifier les données en base de données');
+            log('2. Tester les requêtes login avec des identifiants');
+            log('3. Vérifier le console.log du navigateur pour les erreurs');
+        }
+        
+        // Lance les tests au chargement
+        window.addEventListener('load', () => {
+            setTimeout(runTests, 500);
+        });
+    </script>
+</body>
+</html>

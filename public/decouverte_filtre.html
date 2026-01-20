@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus - Découverte</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./css/decouverte-grid.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="navbar-left">
+            <div class="logo">
+                <i class='bx bxs-heart'></i>
+                <span>Nexus</span>
+            </div>
+        </div>
+        
+        <nav class="navbar-center">
+            <a href="./decouverte-grid.html" class="nav-item active">
+                <span>Découverte</span>
+            </a>
+            <a href="./message.html" class="nav-item">
+                <span>Matchs</span>
+            </a>
+            <a href="./profile.html" class="nav-item">
+                <span>Mon Profil</span>
+            </a>
+        </nav>
+
+        <div class="navbar-right">
+            <button class="btn-icon settings-btn" title="Paramètres">
+                <i class='bx bx-cog'></i>
+            </button>
+            <div class="user-avatar" style="background-image: url('https://via.placeholder.com/40');"></div>
+        </div>
+    </header>
+
+    <main class="grid-layout">
+        
+        <!-- SIDEBAR FILTRES -->
+        <aside class="sidebar-filters">
+            <div class="filters-header">
+                <h2>Filtres</h2>
+                <button id="reset-filters" class="btn-text">Réinitialiser</button>
+            </div>
+
+            <!-- Age Filter -->
+            <div class="filter-group">
+                <div class="filter-label-row">
+                    <label>Âge</label>
+                    <span id="age-value" class="filter-value">18 - 30</span>
+                </div>
+                <div class="range-slider">
+                    <input type="range" id="age-slider" min="18" max="100" value="30" class="slider">
+                </div>
+            </div>
+
+            <!-- Location Filter -->
+            <div class="filter-group">
+                <label>Localisation</label>
+                <select id="location-select" class="select-input">
+                    <option value="">Dakar, Sénégal</option>
+                    <option value="">Thiès, Sénégal</option>
+                    <option value="">Saint-Louis, Sénégal</option>
+                </select>
+            </div>
+
+            <!-- Cultural Criteria -->
+            <div class="filter-group">
+                <label class="filter-title">Critères Culturels</label>
+                <div class="checkbox-list">
+                    <label class="checkbox-item">
+                        <input type="checkbox" checked>
+                        <span>Mêmes langues</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox">
+                        <span>Religion similaire</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox" checked>
+                        <span>Valeurs partagées</span>
+                    </label>
+                    <label class="checkbox-item">
+                        <input type="checkbox">
+                        <span>Non-fumeur</span>
+                    </label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- GRILLE DE PROFILS -->
+        <section class="profiles-grid-section">
+            <div id="profiles-grid" class="profiles-grid">
+                <!-- Les profils seront chargés dynamiquement ici -->
+            </div>
+
+            <!-- EMPTY STATE -->
+            <div id="empty-state" class="empty-state" style="display: none;">
+                <div class="empty-state-content">
+                    <div class="empty-icon">🔍</div>
+                    <h3>Aucun profil trouvé</h3>
+                    <p>Ajustez vos filtres pour trouver de nouvelles personnes</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="./js/discovery-grid.js"></script>
+</body>
+</html>

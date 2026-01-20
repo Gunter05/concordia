@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<!-- Déclaration du type de document HTML5 -->
+<html lang="fr">
+<!-- Élément racine avec langue française -->
+<head>
+    <!-- Section des métadonnées du document -->
+    <meta charset="UTF-8">
+    <!-- Encodage caractères UTF-8 pour supporter les caractères spéciaux -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Configuration responsive pour les appareils mobiles -->
+    <title>Nexus - Paramètres du Compte</title>
+    <!-- Titre affiché dans l'onglet navigateur -->
+    
+    <!-- Importation de la police Google Fonts "Inter" -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <!-- Police système avec poids variés (400 normal, 700 bold) -->
+    
+    <!-- Importation des icônes Boxicons -->
+    <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <!-- Iconothèque pour les icônes (cœur, engrenage, etc.) -->
+    
+    <!-- Feuille de style CSS du projet -->
+    <link rel="stylesheet" href="./css/Global.css">
+    <!-- Styles globaux communs à tout le site -->
+    <link rel="stylesheet" href="./css/settings.css">
+    <!-- Styles spécifiques à la page paramètres -->
+</head>
+
+<body>
+    <!-- Conteneur principal du contenu visible -->
+
+    <!-- ========== NAVBAR ========== -->
+    <!-- Barre de navigation en haut de la page -->
+    <header class="navbar">
+        <!-- En-tête sticky qui reste visible en scrollant -->
+        
+        <!-- Côté gauche de la navbar -->
+        <div class="navbar-left">
+            <!-- Logo et titre de l'application -->
+            <div class="logo">
+                <!-- Logo Nexus avec icône -->
+                <i class='bx bxs-heart'></i>
+                <!-- Icône cœur de Boxicons -->
+                <span>Nexus</span>
+                <!-- Texte du logo -->
+            </div>
+        </div>
+
+        <!-- Centre de la navbar -->
+        <nav class="navbar-center">
+            <!-- Navigation avec liens vers les sections principales -->
+            <a href="./decouverte_filtre.html" class="nav-item">
+                <!-- Lien vers page découverte -->
+                <i class='bx bx-compass'></i>
+                <!-- Icône boussole -->
+                <span>Découvrir</span>
+                <!-- Texte du lien -->
+            </a>
+            
+            <a href="./message.html" class="nav-item">
+                <!-- Lien vers page messages/matchs -->
+                <i class='bx bx-heart'></i>
+                <!-- Icône cœur -->
+                <span>Matchs</span>
+                <!-- Texte du lien -->
+            </a>
+            
+            <a href="./message.html" class="nav-item">
+                <!-- Lien vers page messages -->
+                <i class='bx bx-message-dots'></i>
+                <!-- Icône message -->
+                <span>Messages</span>
+                <!-- Texte du lien -->
+            </a>
+        </nav>
+
+        <!-- Côté droit de la navbar -->
+        <div class="navbar-right">
+            <!-- Éléments utilisateur (avatar, etc.) -->
+            <button class="btn-icon logout-btn" title="Déconnexion">
+                <!-- Bouton de déconnexion -->
+                <i class='bx bx-log-out'></i>
+                <!-- Icône déconnexion -->
+            </button>
+            <!-- Permet à l'utilisateur de se déconnecter -->
+        </div>
+    </header>
+
+    <!-- ========== CONTENEUR PRINCIPAL ========== -->
+    <!-- Layout à deux colonnes : sidebar + contenu -->
+    <main class="settings-container">
+        <!-- Conteneur flex pour la mise en page deux colonnes -->
+
+        <!-- ========== SIDEBAR ========== -->
+        <!-- Menu latéral de navigation -->
+        <aside class="sidebar">
+            <!-- Barre latérale gauche -->
+            
+            <!-- Section menu principal -->
+            <nav class="sidebar-nav">
+                <!-- Navigation verticale -->
+                
+                <a href="./decouverte_filtre.html" class="sidebar-item">
+                    <!-- Lien découverte -->
+                    <i class='bx bx-compass'></i>
+                    <!-- Icône -->
+                    <span>Découvrir</span>
+                    <!-- Texte -->
+                </a>
+
+                <a href="./message.html" class="sidebar-item">
+                    <!-- Lien matchs -->
+                    <i class='bx bx-heart'></i>
+                    <!-- Icône cœur avec notification -->
+                    <span>Matchs</span>
+                    <!-- Texte -->
+                    <span class="notification-badge">3</span>
+                    <!-- Badge rouge avec nombre de matchs -->
+                </a>
+
+                <a href="./message.html" class="sidebar-item">
+                    <!-- Lien messages -->
+                    <i class='bx bx-message-dots'></i>
+                    <!-- Icône message -->
+                    <span>Messages</span>
+                    <!-- Texte -->
+                </a>
+
+                <a href="./settings.html" class="sidebar-item active">
+                    <!-- Lien paramètres (page actuelle) -->
+                    <i class='bx bx-cog'></i>
+                    <!-- Icône engrenage -->
+                    <span>Paramètres</span>
+                    <!-- Texte -->
+                </a>
+                <!-- Classe "active" pour styliser l'élément actuel -->
+            </nav>
+
+            <!-- Section profil utilisateur en bas de sidebar -->
+            <div class="sidebar-profile">
+                <!-- Profil utilisateur en pied de sidebar -->
+                
+                <div class="profile-avatar-mini">
+                    <!-- Avatar utilisateur petit format -->
+                    <img id="sidebar-avatar" src="https://via.placeholder.com/40" alt="Avatar">
+                    <!-- Image de profil (sera remplie par JavaScript) -->
+                </div>
+
+                <div class="profile-info-mini">
+                    <!-- Informations utilisateur -->
+                    <div class="profile-name-mini" id="sidebar-name">Amara Diop</div>
+                    <!-- Nom de l'utilisateur (dynamique) -->
+                    <div class="profile-university-mini" id="sidebar-university">UCAD - Informatique</div>
+                    <!-- Université/formation (dynamique) -->
+                </div>
+            </div>
+        </aside>
+
+        <!-- ========== CONTENU PRINCIPAL ========== -->
+        <!-- Section droite avec les paramètres -->
+        <section class="settings-content">
+            <!-- Conteneur du contenu principal -->
+
+            <!-- En-tête de la page -->
+            <div class="settings-header">
+                <!-- Titre et description -->
+                <h1>Paramètres du Compte</h1>
+                <!-- Titre principal -->
+                <p class="settings-subtitle">Gérez vos informations personnelles et vos préférences de sécurité.</p>
+                <!-- Sous-titre descriptif -->
+            </div>
+
+            <!-- ========== SECTION PROFIL UTILISATEUR ========== -->
+            <!-- Carte avec les infos de base -->
+            <div class="settings-section profile-section">
+                <!-- Section profil utilisateur -->
+                
+                <!-- Avatar et infos profil -->
+                <div class="profile-header">
+                    <!-- En-tête du profil avec avatar -->
+                    
+                    <div class="profile-avatar">
+                        <!-- Avatar grand format -->
+                        <img id="profile-avatar" src="https://via.placeholder.com/100" alt="Avatar">
+                        <!-- Image de profil circulaire (sera remplie par JavaScript) -->
+                    </div>
+
+                    <div class="profile-info">
+                        <!-- Informations profil -->
+                        
+                        <div class="profile-name" id="profile-name">Amara Diop</div>
+                        <!-- Nom de l'utilisateur (rempli dynamiquement) -->
+                        
+                        <div class="profile-meta">
+                            <!-- Métadonnées du profil -->
+                            <span id="profile-status">Étudiante</span>
+                            <!-- Statut utilisateur (dynamique) -->
+                            <span>•</span>
+                            <!-- Séparateur -->
+                            <span id="profile-age">22 ans</span>
+                            <!-- Âge calculé dynamiquement -->
+                        </div>
+
+                        <div class="profile-last-seen" id="profile-last-seen">Dernière connexion: Aujourd'hui</div>
+                        <!-- Dernière visite (dynamique) -->
+
+                        <button class="btn-link" id="change-photo-btn">Changer la photo</button>
+                        <!-- Lien pour changer la photo de profil -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== SECTION INFORMATIONS PUBLIQUES ========== -->
+            <!-- Informations visibles par les autres utilisateurs -->
+            <div class="settings-section">
+                <!-- Section formulaire informations -->
+                
+                <!-- En-tête de section -->
+                <div class="section-header">
+                    <!-- Titre de la section -->
+                    <i class='bx bxs-user'></i>
+                    <!-- Icône utilisateur -->
+                    <h2>Informations Publiques</h2>
+                    <!-- Titre -->
+                </div>
+
+                <!-- Formulaire des infos publiques -->
+                <form id="public-info-form" class="settings-form">
+                    <!-- Formulaire pour les infos visibles -->
+
+                    <!-- Champ 1: Nom complet -->
+                    <div class="form-row">
+                        <!-- Rangée du formulaire -->
+                        <div class="form-group">
+                            <!-- Groupe de formulaire -->
+                            <label for="full-name">Nom complet</label>
+                            <!-- Étiquette du champ -->
+                            <input type="text" id="full-name" name="full-name" placeholder="Ex: Amara Diop">
+                            <!-- Input texte pour nom (sera rempli dynamiquement) -->
+                        </div>
+                    </div>
+
+                    <!-- Champ 2: Université -->
+                    <div class="form-row">
+                        <!-- Rangée du formulaire -->
+                        <div class="form-group">
+                            <!-- Groupe de formulaire -->
+                            <label for="university">Université</label>
+                            <!-- Étiquette du champ -->
+                            <input type="text" id="university" name="university" placeholder="Ex: Université Cheikh Anta Diop">
+                            <!-- Input texte pour université (rempli dynamiquement) -->
+                        </div>
+                    </div>
+
+                    <!-- Champ 3: Bio -->
+                    <div class="form-row full-width">
+                        <!-- Rangée pleine largeur pour textarea -->
+                        <div class="form-group">
+                            <!-- Groupe de formulaire -->
+                            <label for="bio">Bio</label>
+                            <!-- Étiquette du champ -->
+                            <textarea id="bio" name="bio" rows="4" placeholder="Parlez de vous..."></textarea>
+                            <!-- Textarea pour la bio (remplie dynamiquement) -->
+                            <div class="char-count">
+                                <!-- Compteur de caractères -->
+                                <span id="char-count">0</span>
+                                <!-- Nombre actuel de caractères (JavaScript) -->
+                                /300 caractères
+                                <!-- Limite maximale -->
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Boutons d'action -->
+                    <div class="form-actions">
+                        <!-- Buttons save/cancel -->
+                        <button type="reset" class="btn-secondary">Annuler</button>
+                        <!-- Bouton annuler (réinitialise le formulaire) -->
+                        <button type="submit" class="btn-primary">Enregistrer les modifications</button>
+                        <!-- Bouton submit (envoie les données) -->
+                    </div>
+                </form>
+            </div>
+
+            <!-- ========== SECTION SÉCURITÉ ET CONNEXION ========== -->
+            <!-- Paramètres de sécurité du compte -->
+            <div class="settings-section">
+                <!-- Section sécurité -->
+                
+                <!-- En-tête de section -->
+                <div class="section-header">
+                    <!-- Titre de la section -->
+                    <i class='bx bxs-lock'></i>
+                    <!-- Icône cadenas -->
+                    <h2>Sécurité et Connexion</h2>
+                    <!-- Titre -->
+                </div>
+
+                <!-- Formulaire sécurité -->
+                <form id="security-form" class="settings-form">
+                    <!-- Formulaire pour la sécurité -->
+
+                    <!-- Champ 1: Email actuel -->
+                    <div class="form-row">
+                        <!-- Rangée du formulaire -->
+                        <div class="form-group">
+                            <!-- Groupe de formulaire -->
+                            <label for="email">Email actuel</label>
+                            <!-- Étiquette -->
+                            <input type="email" id="email" name="email" disabled placeholder="amara.diop@ucad.edu.sn">
+                            <!-- Input email en lecture seule (rempli dynamiquement) -->
+                            <!-- "disabled" = non éditable directement -->
+                            <a href="#" class="btn-link">Changer l'adresse email</a>
+                            <!-- Lien pour changer l'email (ouvre modal probablement) -->
+                        </div>
+                    </div>
+
+                    <!-- Champ 2: Mot de passe actuel -->
+                    <div class="form-row">
+                        <!-- Rangée du formulaire -->
+                        <div class="form-group">
+                            <!-- Groupe de formulaire -->
+                            <label for="current-password">Mot de passe actuel</label>
+                            <!-- Étiquette -->
+                            <input type="password" id="current-password" name="current-password" placeholder="••••••••">
+                            <!-- Input password masquée (points) -->
+                        </div>
+                    </div>
+
+                    <!-- Champ 3: Nouveau mot de passe -->
+                    <div class="form-row">
+                        <!-- Rangée du formulaire -->
+                        <div class="form-group">
+                            <!-- Groupe de formulaire -->
+                            <label for="new-password">Nouveau mot de passe</label>
+                            <!-- Étiquette -->
+                            <input type="password" id="new-password" name="new-password" placeholder="••••••••">
+                            <!-- Input password masquée (points) -->
+                        </div>
+                    </div>
+
+                    <!-- Champ 4: Confirmer mot de passe -->
+                    <div class="form-row">
+                        <!-- Rangée du formulaire -->
+                        <div class="form-group">
+                            <!-- Groupe de formulaire -->
+                            <label for="confirm-password">Confirmer mot de passe</label>
+                            <!-- Étiquette -->
+                            <input type="password" id="confirm-password" name="confirm-password" placeholder="••••••••">
+                            <!-- Input password masquée pour confirmation -->
+                        </div>
+                    </div>
+
+                    <!-- Boutons d'action -->
+                    <div class="form-actions">
+                        <!-- Buttons -->
+                        <button type="reset" class="btn-secondary">Annuler</button>
+                        <!-- Bouton annuler -->
+                        <button type="submit" class="btn-primary">Mettre à jour le mot de passe</button>
+                        <!-- Bouton submit -->
+                    </div>
+                </form>
+            </div>
+
+            <!-- ========== SECTION PARAMÈTRES SUPPLÉMENTAIRES ========== -->
+            <!-- Options additionnelles -->
+            <div class="settings-section">
+                <!-- Section options supplémentaires -->
+                
+                <!-- En-tête de section -->
+                <div class="section-header">
+                    <!-- Titre de la section -->
+                    <i class='bx bx-bell'></i>
+                    <!-- Icône notification -->
+                    <h2>Paramètres Additionnels</h2>
+                    <!-- Titre -->
+                </div>
+
+                <!-- Options avec toggle -->
+                <div class="settings-options">
+                    <!-- Conteneur des options -->
+
+                    <!-- Option 1: Notifications -->
+                    <div class="option-item">
+                        <!-- Item option -->
+                        <div class="option-info">
+                            <!-- Infos de l'option -->
+                            <h3>Notifications par email</h3>
+                            <!-- Titre option -->
+                            <p>Recevoir des notifications pour les nouveaux matchs et messages</p>
+                            <!-- Description -->
+                        </div>
+                        <label class="toggle-switch">
+                            <!-- Toggle switch (ON/OFF) -->
+                            <input type="checkbox" id="email-notifications" checked>
+                            <!-- Checkbox (cochée par défaut) -->
+                            <span class="toggle-slider"></span>
+                            <!-- Élément visuel du toggle -->
+                        </label>
+                    </div>
+
+                    <!-- Option 2: Profil visible -->
+                    <div class="option-item">
+                        <!-- Item option -->
+                        <div class="option-info">
+                            <!-- Infos de l'option -->
+                            <h3>Profil visible</h3>
+                            <!-- Titre option -->
+                            <p>Permettre aux autres utilisateurs de voir votre profil</p>
+                            <!-- Description -->
+                        </div>
+                        <label class="toggle-switch">
+                            <!-- Toggle switch -->
+                            <input type="checkbox" id="profile-visible" checked>
+                            <!-- Checkbox cochée -->
+                            <span class="toggle-slider"></span>
+                            <!-- Élément visuel du toggle -->
+                        </label>
+                    </div>
+
+                    <!-- Option 3: Partage de localisation -->
+                    <div class="option-item">
+                        <!-- Item option -->
+                        <div class="option-info">
+                            <!-- Infos de l'option -->
+                            <h3>Partage de localisation</h3>
+                            <!-- Titre option -->
+                            <p>Permettre aux autres utilisateurs de voir votre localisation</p>
+                            <!-- Description -->
+                        </div>
+                        <label class="toggle-switch">
+                            <!-- Toggle switch -->
+                            <input type="checkbox" id="location-sharing">
+                            <!-- Checkbox non cochée par défaut -->
+                            <span class="toggle-slider"></span>
+                            <!-- Élément visuel du toggle -->
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== SECTION DANGER ZONE ========== -->
+            <!-- Actions irréversibles -->
+            <div class="settings-section danger-zone">
+                <!-- Section actions dangereuses (suppression) -->
+                
+                <!-- En-tête de section -->
+                <div class="section-header">
+                    <!-- Titre de la section -->
+                    <i class='bx bx-trash'></i>
+                    <!-- Icône poubelle -->
+                    <h2>Zone Dangereuse</h2>
+                    <!-- Titre -->
+                </div>
+
+                <!-- Actions de suppression -->
+                <div class="danger-actions">
+                    <!-- Conteneur actions dangereuses -->
+
+                    <!-- Bouton déconnexion -->
+                    <div class="danger-item">
+                        <!-- Item action -->
+                        <div class="danger-info">
+                            <!-- Infos -->
+                            <h3>Se déconnecter</h3>
+                            <!-- Titre -->
+                            <p>Vous serez déconnecté de ce compte</p>
+                            <!-- Description -->
+                        </div>
+                        <button class="btn-secondary" id="logout-btn">Déconnexion</button>
+                        <!-- Bouton action -->
+                    </div>
+
+                    <!-- Bouton suppression du compte -->
+                    <div class="danger-item">
+                        <!-- Item action -->
+                        <div class="danger-info">
+                            <!-- Infos -->
+                            <h3>Supprimer mon compte</h3>
+                            <!-- Titre -->
+                            <p>Suppression permanente. Cette action est irréversible.</p>
+                            <!-- Description -->
+                        </div>
+                        <button class="btn-danger" id="delete-account-btn">Supprimer le compte</button>
+                        <!-- Bouton dangereux (rouge) -->
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== SCRIPTS ========== -->
+    <!-- Fichiers JavaScript -->
+    <script src="./js/settings.js"></script>
+    <!-- Script pour la logique des paramètres -->
+</body>
+</html>

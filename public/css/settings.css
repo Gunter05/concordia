@@ -1,0 +1,1201 @@
+/* ============= VARIABLES CSS ============= */
+/* Définition de variables réutilisables pour cohérence de design */
+:root {
+    /* Couleurs primaires */
+    --primary-purple: #7c3aed;
+    /* Couleur principale violette */
+    --primary-blue: #607afb;
+    /* Couleur secondaire bleu */
+    --primary-red: #ef4444;
+    /* Couleur rouge pour actions dangereuses */
+    
+    /* Couleurs texte */
+    --text-dark: #1a1a1a;
+    /* Texte foncé (noir) pour contraste maximum */
+    --text-light: #ffffff;
+    /* Texte blanc/clair */
+    --text-muted: #666666;
+    /* Texte gris pour secondaire */
+    --text-hint: #999999;
+    /* Texte gris clair pour hints */
+    
+    /* Couleurs fond */
+    --bg-light: #f5f5f7;
+    /* Fond clair gris très léger */
+    --bg-white: #ffffff;
+    /* Fond blanc */
+    --bg-hover: #f0f0f2;
+    /* Fond au survol */
+    --bg-danger: #fef2f2;
+    /* Fond danger (rouge très clair) */
+    
+    /* Bordures */
+    --border-color: #e5e5e7;
+    /* Couleur bordure grise */
+    --border-focus: #7c3aed;
+    /* Bordure au focus (violet) */
+    
+    /* Ombres */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    /* Petite ombre subtile */
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    /* Ombre moyenne */
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+    /* Grande ombre importante */
+    
+    /* Espacements */
+    --spacing-xs: 4px;
+    /* Très petit espacement */
+    --spacing-sm: 8px;
+    /* Petit espacement */
+    --spacing-md: 16px;
+    /* Espacement moyen */
+    --spacing-lg: 24px;
+    /* Grand espacement */
+    --spacing-xl: 32px;
+    /* Très grand espacement */
+    
+    /* Rayons de bordure */
+    --radius-sm: 4px;
+    /* Coin légèrement arrondi */
+    --radius-md: 8px;
+    /* Coin modérément arrondi */
+    --radius-lg: 12px;
+    /* Coin bien arrondi */
+    --radius-full: 9999px;
+    /* Complètement arrondi (pilule) */
+}
+
+/* ============= RESET & GLOBAL ============= */
+/* Réinitialisation des styles par défaut du navigateur */
+
+* {
+    /* Sélecteur universel */
+    margin: 0;
+    /* Supprime marges extérieures */
+    padding: 0;
+    /* Supprime marges intérieures */
+    box-sizing: border-box;
+    /* Inclut padding/border dans la largeur totale */
+}
+
+html {
+    /* Racine du document */
+    scroll-behavior: smooth;
+    /* Défilement fluide au clic sur liens */
+}
+
+body {
+    /* Corps du document */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Police système moderne */
+    background-color: var(--bg-light);
+    /* Fond gris clair */
+    color: var(--text-dark);
+    /* Texte foncé par défaut */
+    font-size: 14px;
+    /* Taille de police de base */
+    line-height: 1.6;
+    /* Hauteur de ligne pour lisibilité */
+}
+
+/* ============= NAVBAR ============= */
+/* Barre de navigation en haut */
+
+.navbar {
+    /* Conteneur barre navigation */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    justify-content: space-between;
+    /* Espace entre éléments */
+    padding: var(--spacing-md) var(--spacing-lg);
+    /* Padding interne */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+    border-bottom: 1px solid var(--border-color);
+    /* Bordure inférieure grise */
+    position: sticky;
+    /* Reste en haut au défilement */
+    top: 0;
+    /* Position en haut */
+    z-index: 100;
+    /* Au-dessus de tout contenu */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+}
+
+.navbar-left {
+    /* Partie gauche navbar (logo) */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-md);
+    /* Espace entre logo et texte */
+}
+
+.logo {
+    /* Logo Nexus */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-sm);
+    /* Petit espace entre icône et texte */
+    font-size: 18px;
+    /* Taille de police */
+    font-weight: 700;
+    /* Texte gras (bold) */
+    color: var(--text-dark);
+    /* Texte foncé */
+    cursor: pointer;
+    /* Curseur pointeur au survol */
+}
+
+.logo i {
+    /* Icône du logo */
+    font-size: 24px;
+    /* Taille augmentée */
+    color: var(--primary-purple);
+    /* Couleur violette */
+}
+
+.navbar-center {
+    /* Partie centre navbar (navigation) */
+    display: flex;
+    /* Layout horizontal */
+    gap: var(--spacing-xl);
+    /* Grand espace entre liens */
+    flex: 1;
+    /* Prend l'espace disponible */
+    justify-content: center;
+    /* Centre le contenu */
+}
+
+.navbar-right {
+    /* Partie droite navbar (boutons action) */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-md);
+    /* Espace entre éléments */
+}
+
+.logout-btn {
+    /* Bouton déconnexion */
+    background-color: transparent;
+    /* Pas de fond */
+    border: none;
+    /* Pas de bordure */
+    cursor: pointer;
+    /* Curseur pointeur */
+    color: var(--text-muted);
+    /* Texte gris */
+    font-size: 20px;
+    /* Taille icône */
+    transition: color 0.2s;
+    /* Animation au survol */
+}
+
+.logout-btn:hover {
+    /* Au survol du bouton */
+    color: var(--primary-purple);
+    /* Change couleur au violet */
+}
+
+/* ============= CONTENEUR PRINCIPAL ============= */
+/* Layout à deux colonnes : sidebar + contenu */
+
+.settings-container {
+    /* Conteneur principal */
+    display: flex;
+    /* Layout horizontal */
+    gap: 0;
+    /* Pas d'espace entre colonnes */
+    min-height: calc(100vh - 70px);
+    /* Hauteur minimale = hauteur écran moins navbar */
+}
+
+/* ============= SIDEBAR ============= */
+/* Menu latéral de navigation */
+
+.sidebar {
+    /* Conteneur sidebar gauche */
+    width: 220px;
+    /* Largeur fixe */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+    border-right: 1px solid var(--border-color);
+    /* Bordure droite grise */
+    padding: var(--spacing-lg);
+    /* Padding interne */
+    display: flex;
+    /* Layout vertical */
+    flex-direction: column;
+    /* Direction verticale */
+    gap: var(--spacing-xl);
+    /* Grand espace entre sections */
+    overflow-y: auto;
+    /* Scroll vertical si trop long */
+}
+
+.sidebar-nav {
+    /* Navigation verticale */
+    display: flex;
+    /* Layout vertical */
+    flex-direction: column;
+    /* Direction verticale */
+    gap: var(--spacing-md);
+    /* Espacement entre liens */
+}
+
+.sidebar-item {
+    /* Lien de navigation */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-md);
+    /* Espace entre icône et texte */
+    padding: var(--spacing-sm) var(--spacing-md);
+    /* Padding interne */
+    color: var(--text-muted);
+    /* Texte gris */
+    text-decoration: none;
+    /* Pas de soulignement */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    transition: all 0.2s;
+    /* Animation smooth */
+    position: relative;
+    /* Position relative pour badge */
+}
+
+.sidebar-item:hover {
+    /* Au survol du lien */
+    background-color: var(--bg-hover);
+    /* Fond légèrement plus foncé */
+    color: var(--text-dark);
+    /* Texte plus foncé */
+}
+
+.sidebar-item.active {
+    /* Lien actif (page courante) */
+    background-color: #f0e6ff;
+    /* Fond violet très clair */
+    color: var(--primary-purple);
+    /* Texte violet */
+    font-weight: 600;
+    /* Texte semi-gras */
+}
+
+.sidebar-item i {
+    /* Icône du lien */
+    font-size: 20px;
+    /* Taille icône */
+}
+
+.notification-badge {
+    /* Badge notification (nombre) */
+    background-color: var(--primary-red);
+    /* Fond rouge */
+    color: var(--text-light);
+    /* Texte blanc */
+    border-radius: var(--radius-full);
+    /* Complètement arrondi */
+    padding: 2px 6px;
+    /* Petit padding */
+    font-size: 12px;
+    /* Petit texte */
+    font-weight: 600;
+    /* Semi-gras */
+    margin-left: auto;
+    /* Pousse à droite */
+}
+
+.sidebar-profile {
+    /* Section profil en bas sidebar */
+    display: flex;
+    /* Layout horizontal */
+    gap: var(--spacing-md);
+    /* Espace entre avatar et infos */
+    padding: var(--spacing-md);
+    /* Padding interne */
+    background-color: var(--bg-light);
+    /* Fond gris clair */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    margin-top: auto;
+    /* Pousse vers le bas */
+}
+
+.profile-avatar-mini {
+    /* Avatar petit format */
+    width: 40px;
+    /* Largeur fixe */
+    height: 40px;
+    /* Hauteur fixe */
+    border-radius: 50%;
+    /* Complètement arrondi (cercle) */
+    overflow: hidden;
+    /* Masque le débordement */
+    flex-shrink: 0;
+    /* Empêche la réduction */
+}
+
+.profile-avatar-mini img {
+    /* Image avatar */
+    width: 100%;
+    /* Largeur 100% */
+    height: 100%;
+    /* Hauteur 100% */
+    object-fit: cover;
+    /* Remplit le cercle */
+}
+
+.profile-info-mini {
+    /* Infos profil format mini */
+    display: flex;
+    /* Layout vertical */
+    flex-direction: column;
+    /* Direction verticale */
+    justify-content: center;
+    /* Centre verticalement */
+    gap: var(--spacing-xs);
+    /* Très petit espace entre éléments */
+}
+
+.profile-name-mini {
+    /* Nom utilisateur petit format */
+    font-weight: 600;
+    /* Semi-gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    font-size: 13px;
+    /* Petite taille */
+}
+
+.profile-university-mini {
+    /* Université petit format */
+    font-size: 12px;
+    /* Très petite taille */
+    color: var(--text-hint);
+    /* Texte très gris */
+}
+
+/* ============= CONTENU PRINCIPAL ============= */
+/* Section droite avec les paramètres */
+
+.settings-content {
+    /* Conteneur contenu principal */
+    flex: 1;
+    /* Prend l'espace restant */
+    padding: var(--spacing-xl);
+    /* Grand padding */
+    overflow-y: auto;
+    /* Scroll vertical */
+    max-width: 900px;
+    /* Largeur maximale */
+}
+
+.settings-header {
+    /* En-tête de la page */
+    margin-bottom: var(--spacing-xl);
+    /* Espacement inférieur */
+}
+
+.settings-header h1 {
+    /* Titre principal */
+    font-size: 32px;
+    /* Grande taille */
+    font-weight: 700;
+    /* Très gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    margin-bottom: var(--spacing-sm);
+    /* Petit espacement */
+}
+
+.settings-subtitle {
+    /* Sous-titre description */
+    color: var(--text-muted);
+    /* Texte gris */
+    font-size: 15px;
+    /* Taille standard */
+}
+
+/* ============= SECTIONS ============= */
+/* Conteneurs de groupes d'éléments */
+
+.settings-section {
+    /* Conteneur de section */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+    border-radius: var(--radius-lg);
+    /* Coins bien arrondis */
+    padding: var(--spacing-xl);
+    /* Grand padding interne */
+    margin-bottom: var(--spacing-xl);
+    /* Grand espacement inférieur */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+    border: 1px solid var(--border-color);
+    /* Bordure grise subtile */
+}
+
+.section-header {
+    /* En-tête de section */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-md);
+    /* Espace entre icône et titre */
+    margin-bottom: var(--spacing-lg);
+    /* Espacement inférieur */
+    padding-bottom: var(--spacing-lg);
+    /* Padding inférieur */
+    border-bottom: 1px solid var(--border-color);
+    /* Bordure inférieure */
+}
+
+.section-header i {
+    /* Icône de section */
+    font-size: 24px;
+    /* Grande taille */
+    color: var(--primary-purple);
+    /* Couleur violette */
+}
+
+.section-header h2 {
+    /* Titre de section */
+    font-size: 18px;
+    /* Taille moyenne */
+    font-weight: 600;
+    /* Semi-gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    margin: 0;
+    /* Pas de marge par défaut */
+}
+
+/* ============= SECTION PROFIL ============= */
+/* Affichage des infos utilisateur */
+
+.profile-section {
+    /* Section profil */
+    background: linear-gradient(135deg, #7c3aed15 0%, #607afb15 100%);
+    /* Gradient très léger violet-bleu */
+    border: 1px solid #e5d4ff;
+    /* Bordure violet très clair */
+}
+
+.profile-header {
+    /* En-tête profil */
+    display: flex;
+    /* Layout horizontal */
+    gap: var(--spacing-xl);
+    /* Grand espace entre avatar et infos */
+    align-items: flex-start;
+    /* Aligne au haut */
+}
+
+.profile-avatar {
+    /* Avatar grand format */
+    width: 100px;
+    /* Largeur fixe */
+    height: 100px;
+    /* Hauteur fixe */
+    border-radius: 50%;
+    /* Complètement arrondi (cercle) */
+    overflow: hidden;
+    /* Masque le débordement */
+    flex-shrink: 0;
+    /* Empêche la réduction */
+    box-shadow: var(--shadow-md);
+    /* Ombre moyenne */
+}
+
+.profile-avatar img {
+    /* Image avatar */
+    width: 100%;
+    /* Largeur 100% */
+    height: 100%;
+    /* Hauteur 100% */
+    object-fit: cover;
+    /* Remplit le cercle */
+}
+
+.profile-info {
+    /* Infos profil */
+    flex: 1;
+    /* Prend l'espace restant */
+}
+
+.profile-name {
+    /* Nom utilisateur grand format */
+    font-size: 24px;
+    /* Grande taille */
+    font-weight: 700;
+    /* Très gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    margin-bottom: var(--spacing-sm);
+    /* Petit espacement */
+}
+
+.profile-meta {
+    /* Métadonnées profil */
+    color: var(--text-muted);
+    /* Texte gris */
+    font-size: 14px;
+    /* Taille standard */
+    margin-bottom: var(--spacing-md);
+    /* Espacement modéré */
+}
+
+.profile-meta span {
+    /* Éléments dans métadonnées */
+    margin: 0 var(--spacing-sm);
+    /* Petit espace latéral */
+}
+
+.profile-last-seen {
+    /* Texte dernière connexion */
+    color: var(--text-hint);
+    /* Texte très gris */
+    font-size: 13px;
+    /* Petite taille */
+    margin-bottom: var(--spacing-md);
+    /* Espacement modéré */
+}
+
+/* ============= FORMULAIRES ============= */
+/* Styles pour les champs de formulaire */
+
+.settings-form {
+    /* Conteneur formulaire */
+    display: flex;
+    /* Layout vertical */
+    flex-direction: column;
+    /* Direction verticale */
+    gap: var(--spacing-lg);
+    /* Grand espace entre rangées */
+}
+
+.form-row {
+    /* Rangée de formulaire */
+    display: flex;
+    /* Layout horizontal */
+    gap: var(--spacing-lg);
+    /* Grand espace entre colonnes */
+}
+
+.form-row.full-width {
+    /* Rangée pleine largeur */
+    width: 100%;
+    /* Largeur 100% */
+    flex-direction: column;
+    /* Une seule colonne */
+}
+
+.form-group {
+    /* Groupe de champ (label + input) */
+    display: flex;
+    /* Layout vertical */
+    flex-direction: column;
+    /* Direction verticale */
+    gap: var(--spacing-sm);
+    /* Petit espace */
+    flex: 1;
+    /* Partage l'espace équitablement */
+}
+
+.form-group label {
+    /* Étiquette du champ */
+    font-weight: 600;
+    /* Semi-gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    font-size: 14px;
+    /* Taille standard */
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+    /* Tous les champs de formulaire */
+    padding: var(--spacing-md);
+    /* Padding moyen */
+    border: 1px solid var(--border-color);
+    /* Bordure grise */
+    border-radius: var(--radius-md);
+    /* Coins modérément arrondis */
+    font-family: inherit;
+    /* Même police que le document */
+    font-size: 14px;
+    /* Taille standard */
+    color: var(--text-dark);
+    /* Texte foncé */
+    transition: all 0.2s;
+    /* Animation au survol */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+    /* Au focus (clic/tab) */
+    outline: none;
+    /* Pas d'outline par défaut */
+    border-color: var(--border-focus);
+    /* Bordure violette */
+    box-shadow: 0 0 0 3px rgba(124, 58, 237, 0.1);
+    /* Ombre violet très clair */
+}
+
+.form-group input:disabled {
+    /* Champ désactivé */
+    background-color: var(--bg-light);
+    /* Fond gris clair */
+    color: var(--text-hint);
+    /* Texte très gris */
+    cursor: not-allowed;
+    /* Curseur interdiction */
+}
+
+.form-group textarea {
+    /* Textarea */
+    resize: vertical;
+    /* Redimensionnable verticalement */
+    min-height: 120px;
+    /* Hauteur minimale */
+}
+
+.char-count {
+    /* Compteur de caractères */
+    font-size: 12px;
+    /* Très petit texte */
+    color: var(--text-hint);
+    /* Texte très gris */
+    text-align: right;
+    /* Aligné à droite */
+}
+
+.form-actions {
+    /* Conteneur boutons action */
+    display: flex;
+    /* Layout horizontal */
+    gap: var(--spacing-md);
+    /* Espace entre boutons */
+    justify-content: flex-end;
+    /* Aligné à droite */
+    padding-top: var(--spacing-lg);
+    /* Padding supérieur */
+    border-top: 1px solid var(--border-color);
+    /* Bordure supérieure */
+    margin-top: var(--spacing-lg);
+    /* Marge supérieure */
+}
+
+/* ============= BOUTONS ============= */
+/* Styles pour tous les boutons */
+
+.btn-primary {
+    /* Bouton principal (submit) */
+    background-color: var(--primary-purple);
+    /* Fond violet */
+    color: var(--text-light);
+    /* Texte blanc */
+    border: none;
+    /* Pas de bordure */
+    padding: var(--spacing-md) var(--spacing-lg);
+    /* Padding moyen */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    font-weight: 600;
+    /* Semi-gras */
+    cursor: pointer;
+    /* Curseur pointeur */
+    transition: all 0.2s;
+    /* Animation smooth */
+    font-size: 14px;
+    /* Taille standard */
+}
+
+.btn-primary:hover {
+    /* Au survol du bouton */
+    background-color: #6d28d9;
+    /* Violet plus foncé */
+    box-shadow: var(--shadow-md);
+    /* Ombre moyenne */
+}
+
+.btn-primary:active {
+    /* Au clic du bouton */
+    transform: scale(0.98);
+    /* Légère réduction */
+}
+
+.btn-secondary {
+    /* Bouton secondaire (annuler) */
+    background-color: var(--bg-light);
+    /* Fond gris clair */
+    color: var(--text-dark);
+    /* Texte foncé */
+    border: 1px solid var(--border-color);
+    /* Bordure grise */
+    padding: var(--spacing-md) var(--spacing-lg);
+    /* Padding moyen */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    font-weight: 600;
+    /* Semi-gras */
+    cursor: pointer;
+    /* Curseur pointeur */
+    transition: all 0.2s;
+    /* Animation smooth */
+    font-size: 14px;
+    /* Taille standard */
+}
+
+.btn-secondary:hover {
+    /* Au survol du bouton */
+    background-color: var(--bg-hover);
+    /* Fond plus foncé */
+    border-color: var(--text-muted);
+    /* Bordure plus foncée */
+}
+
+.btn-danger {
+    /* Bouton danger (supprimer) */
+    background-color: var(--primary-red);
+    /* Fond rouge */
+    color: var(--text-light);
+    /* Texte blanc */
+    border: none;
+    /* Pas de bordure */
+    padding: var(--spacing-md) var(--spacing-lg);
+    /* Padding moyen */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    font-weight: 600;
+    /* Semi-gras */
+    cursor: pointer;
+    /* Curseur pointeur */
+    transition: all 0.2s;
+    /* Animation smooth */
+    font-size: 14px;
+    /* Taille standard */
+}
+
+.btn-danger:hover {
+    /* Au survol du bouton */
+    background-color: #dc2626;
+    /* Rouge plus foncé */
+    box-shadow: var(--shadow-md);
+    /* Ombre moyenne */
+}
+
+.btn-link {
+    /* Lien stylisé en bouton */
+    background-color: transparent;
+    /* Pas de fond */
+    color: var(--primary-purple);
+    /* Texte violet */
+    border: none;
+    /* Pas de bordure */
+    padding: 0;
+    /* Pas de padding */
+    cursor: pointer;
+    /* Curseur pointeur */
+    font-weight: 600;
+    /* Semi-gras */
+    font-size: 14px;
+    /* Taille standard */
+    text-decoration: underline;
+    /* Soulignage */
+    transition: color 0.2s;
+    /* Animation smooth */
+}
+
+.btn-link:hover {
+    /* Au survol du lien */
+    color: #6d28d9;
+    /* Violet plus foncé */
+}
+
+.btn-text {
+    /* Bouton texte simple */
+    background-color: transparent;
+    /* Pas de fond */
+    color: var(--primary-purple);
+    /* Texte violet */
+    border: none;
+    /* Pas de bordure */
+    cursor: pointer;
+    /* Curseur pointeur */
+    font-weight: 600;
+    /* Semi-gras */
+    font-size: 14px;
+    /* Taille standard */
+    transition: color 0.2s;
+    /* Animation smooth */
+}
+
+.btn-text:hover {
+    /* Au survol du bouton */
+    color: #6d28d9;
+    /* Violet plus foncé */
+}
+
+.btn-icon {
+    /* Bouton avec icône */
+    background-color: transparent;
+    /* Pas de fond */
+    border: none;
+    /* Pas de bordure */
+    cursor: pointer;
+    /* Curseur pointeur */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Centre verticalement */
+    justify-content: center;
+    /* Centre horizontalement */
+    transition: all 0.2s;
+    /* Animation smooth */
+}
+
+/* ============= TOGGLE SWITCH ============= */
+/* Interrupteur ON/OFF */
+
+.toggle-switch {
+    /* Conteneur toggle */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    cursor: pointer;
+    /* Curseur pointeur */
+    position: relative;
+    /* Position relative pour slider */
+}
+
+.toggle-switch input {
+    /* Checkbox masquée */
+    display: none;
+    /* Masquée visuellement */
+}
+
+.toggle-slider {
+    /* Élément visuel du toggle */
+    width: 44px;
+    /* Largeur fixe */
+    height: 24px;
+    /* Hauteur fixe */
+    background-color: #ccc;
+    /* Fond gris par défaut */
+    border-radius: var(--radius-full);
+    /* Complètement arrondi (pilule) */
+    position: relative;
+    /* Position relative */
+    transition: background-color 0.3s;
+    /* Animation couleur */
+}
+
+.toggle-slider::before {
+    /* Pseudo-élément cercle du slider */
+    content: '';
+    /* Contenu vide */
+    position: absolute;
+    /* Position absolue */
+    width: 20px;
+    /* Largeur du cercle */
+    height: 20px;
+    /* Hauteur du cercle */
+    background-color: white;
+    /* Fond blanc */
+    border-radius: 50%;
+    /* Complètement arrondi (cercle) */
+    top: 2px;
+    /* Positioned au haut */
+    left: 2px;
+    /* Positioned à gauche */
+    transition: left 0.3s;
+    /* Animation position */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+}
+
+.toggle-switch input:checked + .toggle-slider {
+    /* Slider coché */
+    background-color: var(--primary-purple);
+    /* Fond violet */
+}
+
+.toggle-switch input:checked + .toggle-slider::before {
+    /* Cercle du slider coché */
+    left: 22px;
+    /* Déplacé à droite */
+}
+
+/* ============= OPTIONS ============= */
+/* Conteneurs d'options avec toggles */
+
+.settings-options {
+    /* Conteneur des options */
+    display: flex;
+    /* Layout vertical */
+    flex-direction: column;
+    /* Direction verticale */
+    gap: var(--spacing-lg);
+    /* Grand espace entre options */
+}
+
+.option-item {
+    /* Item option */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    justify-content: space-between;
+    /* Espace entre éléments */
+    padding: var(--spacing-md);
+    /* Padding moyen */
+    background-color: var(--bg-light);
+    /* Fond gris clair */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    border: 1px solid var(--border-color);
+    /* Bordure grise */
+    transition: all 0.2s;
+    /* Animation smooth */
+}
+
+.option-item:hover {
+    /* Au survol de l'option */
+    background-color: var(--bg-hover);
+    /* Fond légèrement plus foncé */
+}
+
+.option-info {
+    /* Infos de l'option */
+    flex: 1;
+    /* Prend l'espace disponible */
+}
+
+.option-info h3 {
+    /* Titre option */
+    font-size: 15px;
+    /* Petite taille */
+    font-weight: 600;
+    /* Semi-gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    margin-bottom: var(--spacing-xs);
+    /* Très petit espacement */
+}
+
+.option-info p {
+    /* Description option */
+    font-size: 13px;
+    /* Très petite taille */
+    color: var(--text-muted);
+    /* Texte gris */
+    margin: 0;
+    /* Pas de marge */
+}
+
+/* ============= DANGER ZONE ============= */
+/* Section actions dangereuses */
+
+.danger-zone {
+    /* Section zone dangereuse */
+    background-color: var(--bg-danger);
+    /* Fond rouge très clair */
+    border-color: #fecaca;
+    /* Bordure rose clair */
+}
+
+.danger-actions {
+    /* Conteneur actions dangereuses */
+    display: flex;
+    /* Layout vertical */
+    flex-direction: column;
+    /* Direction verticale */
+    gap: var(--spacing-lg);
+    /* Grand espace entre actions */
+}
+
+.danger-item {
+    /* Item action dangereuse */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    justify-content: space-between;
+    /* Espace entre éléments */
+    padding: var(--spacing-md);
+    /* Padding moyen */
+    background-color: var(--text-light);
+    /* Fond blanc */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    border: 1px solid #fca5a5;
+    /* Bordure rose */
+}
+
+.danger-info {
+    /* Infos action dangereuse */
+    flex: 1;
+    /* Prend l'espace disponible */
+}
+
+.danger-info h3 {
+    /* Titre action */
+    font-size: 15px;
+    /* Petite taille */
+    font-weight: 600;
+    /* Semi-gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    margin-bottom: var(--spacing-xs);
+    /* Très petit espacement */
+}
+
+.danger-info p {
+    /* Description action */
+    font-size: 13px;
+    /* Très petite taille */
+    color: var(--text-muted);
+    /* Texte gris */
+    margin: 0;
+    /* Pas de marge */
+}
+
+/* ============= RESPONSIVE ============= */
+/* Adaptation pour petits écrans */
+
+@media (max-width: 1024px) {
+    /* Écrans tablette et petits ordinateurs */
+    
+    .settings-container {
+        /* Conteneur principal */
+        flex-direction: column;
+        /* Une colonne verticale */
+    }
+
+    .sidebar {
+        /* Sidebar */
+        width: 100%;
+        /* Largeur 100% */
+        flex-direction: row;
+        /* Direction horizontale */
+        border-right: none;
+        /* Pas de bordure droite */
+        border-bottom: 1px solid var(--border-color);
+        /* Bordure inférieure */
+        padding: var(--spacing-md);
+        /* Padding réduit */
+        gap: var(--spacing-lg);
+        /* Espace entre éléments */
+    }
+
+    .sidebar-nav {
+        /* Navigation */
+        flex-direction: row;
+        /* Horizontale */
+        gap: var(--spacing-lg);
+        /* Grand espace */
+    }
+
+    .settings-content {
+        /* Contenu principal */
+        padding: var(--spacing-lg);
+        /* Padding réduit */
+        max-width: 100%;
+        /* Largeur 100% */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Écrans téléphone */
+    
+    .navbar-center {
+        /* Navigation navbar */
+        gap: var(--spacing-lg);
+        /* Espace réduit */
+    }
+
+    .settings-header h1 {
+        /* Titre principal */
+        font-size: 24px;
+        /* Taille réduite */
+    }
+
+    .profile-header {
+        /* En-tête profil */
+        flex-direction: column;
+        /* Verticale */
+        align-items: center;
+        /* Centre horizontalement */
+        text-align: center;
+        /* Texte centré */
+    }
+
+    .form-row {
+        /* Rangée formulaire */
+        flex-direction: column;
+        /* Une colonne */
+        gap: var(--spacing-md);
+        /* Espace réduit */
+    }
+
+    .form-actions {
+        /* Boutons action */
+        flex-direction: column;
+        /* Une colonne */
+        justify-content: flex-end;
+        /* Aligné à droite */
+    }
+
+    .btn-primary,
+    .btn-secondary,
+    .btn-danger {
+        /* Tous les boutons */
+        width: 100%;
+        /* Largeur 100% */
+    }
+
+    .danger-item {
+        /* Item action dangereuse */
+        flex-direction: column;
+        /* Une colonne */
+        gap: var(--spacing-md);
+        /* Espace réduit */
+        align-items: flex-start;
+        /* Aligné au début */
+    }
+
+    .danger-item .btn-danger,
+    .danger-item .btn-secondary {
+        /* Boutons action */
+        width: 100%;
+        /* Largeur 100% */
+    }
+
+    .option-item {
+        /* Item option */
+        flex-direction: column;
+        /* Une colonne */
+        align-items: flex-start;
+        /* Aligné au début */
+        gap: var(--spacing-md);
+        /* Espace réduit */
+    }
+}

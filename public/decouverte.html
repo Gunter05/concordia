@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <link href='https://cdn.boxicons.com/3.0.6/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="./css/Decouvert.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <title>Decouverte concordia</title>
+    <script src="./js/decouverte.js"></script>
+</head>
+<body>
+    <header>
+        <img src="./images/logo_concordia.png" alt="loge de Concordia">
+        <h2>Concordia</h2>
+        <nav>
+            <ul>
+                <li><a href="#">Decouverte</a></li>
+                <li><a href="#">Matchs</a></li>
+                <li><a href="#">Mon profil</a></li>
+                <li><a href="#" class='bxds  bx-user'></a></li>
+            </ul>
+        </nav>
+
+    </header>
+
+    <main class="container">
+        <div class="bloc">
+            <button class="btn btn-outline-secondary rounded-circle"
+                onclick="rotate(-1)" style="position: relative; top: 250px;">
+                <i class="bi bi-chevron-left">L</i>
+            </button>
+            <div id="stack" class="cartes">
+                <div class="card">
+                    <div class="image-box">
+                        <span class="badge left" style="color: white;">Relation serieuse</span>
+                        <img src=".!images/Image test.jpeg" alt="Profil">
+                        <span class="badge bottomleft">
+                            <h2 style="color: white;">Steeve, 20</h2>
+                            <p class="info" style="color: white;">Etudiant en Informatique</p>
+                            <p class="info" style="color: white;">Dakar A 5km</p>
+                        </span>
+                    </div>
+                    <div class="content">
+                        <p class="bio">
+                            Passionné par le football, la technologie et la musique. Je cherche quelqu'un d'ouvert,souriant et sincere pour partager des moments tout en couleurs
+                        </p>
+                        <div class="tags">
+                            <span>Football</span>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn cancel"><i class="fa-solid fa-xmark"></i></button>
+                        <button class="btn info"><i class="fa-solid fa-circle-info"></i></button>
+                        <button class="btn like"><i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="image-box">
+                        <span class="badge left" style="color: white;">Relation serieuse</span>
+                        <img src="./images/Image test.jpeg" alt="Profil">
+                        <span class="badge bottomleft">
+                            <h2 style="color: white;">Steeve, 20</h2>
+                            <p class="info" style="color: white;">Etudiant en Informatique</p>
+                            <p class="info" style="color: white;">Dakar A 5km</p>
+                        </span>
+                    </div>
+                    <div class="content">
+                        <p class="bio">
+                            Passionné par le football, la technologie et la musique. Je cherche quelqu'un d'ouvert,souriant et sincere pour partager des moments tout en couleurs
+                        </p>
+                        <div class="tags">
+                            <span>Football</span>
+                        </div>
+                    </div>
+                    <div class="actions">
+                        <button class="btn cancel"><i class="fa-solid fa-xmark"></i></button>
+                        <button class="btn info"><i class="fa-solid fa-circle-info"></i></button>
+                        <button class="btn like"><i class="fa-solid fa-heart"></i></button>
+                    </div>
+                </div>
+            </div>
+            <button id="rotate-btn" class="btn btn-outline-secondary rounded-circle" style="position: relative; top: 250px;" onclick="rotate(1)">
+                <i class="bi bi-chevron-right">R</i>
+            </button>
+        </div>
+        
+    </main>
+    
+</body>
+</html>

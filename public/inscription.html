@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Concordia inscription</title>
+        <link rel="stylesheet" href="./css/style.css">
+        <!-- liens pour les icônes -->
+        <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
+        <link href='https://cdn.boxicons.com/3.0.6/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
+    </head>
+    <body>
+        <main class="container">
+            <!-- section gauche:formulaire -->
+            <section class="auth">
+                <header class="hero-header">
+                    <img src ="./images/logo_concordia.svg" alt="Logo Concordia">
+                </header>
+                <div class="auth-box">
+                    <h2>Rejoignez la communauté Concordia</h2>
+                    <p>La plateforme de rencontre dédiée aux étudiants</p>
+                    <form action ="#" method="post">
+                        <div class="form-group">
+                            <label for="name">Nom</label>
+                            <div class="input-wrapper">
+                                <input type="text" id="nom" name="nom" placeholder="Username" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Adresse mail</label>
+                            <div class="input-wrapper">
+                                <i class='bxds  bx-user'></i>
+                                <input type="email" id="email" name="email" placeholder="etudiant@universite.edu" required>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="form-label-row">
+                            <label for="password">Mot de passe</label>
+                            </div>
+                            <div class="input-wrapper">
+                                <i class='bxds  bx-lock-keyhole'></i> 
+                                <input type="password" id="password" name="password" placeholder="........" required>
+                                <button type="button" aria-label="Afficher le mot de passe"><i class='bx  bx-eye-slash'></i></button>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn-primary">S'inscrire<i class="bx bx-right-arrow-alt"></i></button>
+                        <div class="divider">
+                            <span>Ou continuer avec</span>
+                        </div>
+                        <div class="social-login">
+                            <button type="button" class="btn-social google"><i class="bx bxl-google"></i>Google</button>
+                        </div>
+                    </form>
+                    <p class="signup-link">Vous avez déjà un compte?
+                        <a href="#">Se connecter</a>
+                    </p>
+                    <footer class="auth-footer"><i class='bxds  bx-lock-keyhole'></i> <small>Vos données son sécurisées et chiffrées</small></footer>
+                </div>
+            </section>  
+            <!-- section droite: image  -->
+            <section class="hero">
+                <div class="hero-content">
+                    <button type="button" class="btn-primary">Rejoignez +50k étudiants</button>
+                    <h1>Rencontrez, connectez, partagez</h1>
+                    <p>Découvrez des personnes qui partagent vos passions et votre ambition sur votre campus et au-delà </p>
+                </div>
+            </section>
+        </main>
+    </body>
+</html>

@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<!-- Déclaration HTML5 -->
+<html lang="fr">
+<!-- Langue française -->
+<head>
+    <!-- Section métadonnées -->
+    <meta charset="UTF-8">
+    <!-- Encodage UTF-8 -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Responsive design -->
+    <title>Nexus - Profil Utilisateur</title>
+    <!-- Titre page -->
+    
+    <!-- Police Google Fonts Inter -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <!-- Police moderne -->
+    
+    <!-- Icônes Boxicons -->
+    <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
+    <!-- Iconothèque -->
+    
+    <!-- CSS personnalisé -->
+    <link rel="stylesheet" href="./css/Info_pers.css">
+    <!-- Feuille de style pour cette page -->
+</head>
+
+<body>
+    <!-- Corps du document -->
+    <!-- ========== HEADER / NAVBAR ========== -->
+    <header>
+        <!-- Barre de navigation principale -->
+        <img src="./images/logo.jpg" alt="Logo Nexus">
+        <!-- Logo de l'application -->
+        <h2>Nexus</h2>
+        <!-- Nom de l'application -->
+        <nav>
+            <!-- Navigation -->
+            <ul class="choix">
+                <!-- Liste des liens principaux -->
+                <li><a href="./decouverte_filtre.html">Discover</a></li>
+                <!-- Lien découverte -->
+                <li><a href="./message.html">Matches</a></li>
+                <!-- Lien matchs -->
+                <li><a href="./message.html">Messages</a></li>
+                <!-- Lien messages -->
+                <li><a href="#">Events</a></li>
+                <!-- Lien événements -->
+            </ul>
+            <ul class="icone">
+                <!-- Section icônes -->
+                <li><a href="./settings.html"><i class='bx bx-bell'></i></a></li>
+                <!-- Icône notification -->
+                <li><a href="./settings.html"><i class='bx bx-user'></i></a></li>
+                <!-- Icône profil -->
+            </ul>
+        </nav>
+    </header>
+
+    <!-- ========== BREADCRUMB ========== -->
+    <div class="breadcrumb">
+        <!-- Chemin de navigation -->
+        <a href="#">Home</a>
+        <!-- Lien home -->
+        <span>/</span>
+        <!-- Séparateur -->
+        <a href="./decouverte_filtre.html">Discover</a>
+        <!-- Lien découverte -->
+        <span>/</span>
+        <!-- Séparateur -->
+        <span>Fatima N.</span>
+        <!-- Profil actuel -->
+    </div>
+
+    <!-- ========== CONTENEUR PRINCIPAL ========== -->
+    <div class="main-container">
+        <!-- Layout à deux colonnes -->
+        <!-- ========== COLONNE GAUCHE : IMAGE ========== -->
+        <div class="container">
+            <!-- Conteneur image gauche -->
+            
+            <!-- Cadre photo avec badges -->
+            <div class="image-box">
+                <!-- Cadre contenant l'image -->
+                <span class="badge left">Long-term</span>
+                <!-- Badge "Long-term" en haut à gauche -->
+                <img src="./images/Image tst.jpeg" alt="Photo de Fatima">
+                <!-- Photo de profil -->
+                <span class="verified-badge">
+                    <!-- Badge verified en bas gauche -->
+                    <i class='bx bx-check-circle'></i>
+                    <!-- Icône vérifié -->
+                    Verified Student
+                    <!-- Texte vérifié -->
+                </span>
+            </div>
+
+            <!-- Score match en haut à droite de l'image -->
+            <div class="match-score">
+                <!-- Conteneur score -->
+                <div class="score-number">92%</div>
+                <!-- Pourcentage -->
+                <div>
+                    <!-- Infos score -->
+                    <div class="score-label">Match Score</div>
+                    <!-- Label -->
+                    <i class='bx bx-sparkle score-icon'></i>
+                    <!-- Icône sparkle -->
+                </div>
+            </div>
+
+            <!-- Boutons sous l'image -->
+            <div class="image-btn">
+                <!-- Conteneur boutons -->
+                <button class="btn connexion">
+                    <!-- Bouton Connect -->
+                    <i class='bx bx-heart'></i>
+                    <!-- Icône cœur -->
+                    Connect
+                    <!-- Texte -->
+                </button>
+                <button class="btn msg">
+                    <!-- Bouton Message -->
+                    <i class='bx bx-message-dots'></i>
+                    <!-- Icône message -->
+                    Message
+                    <!-- Texte -->
+                </button>
+            </div>
+
+            <!-- Lien report -->
+            <footer class="footer">
+                <!-- Footer image -->
+                <p><i class='bx bx-flag'></i> Report Profile</p>
+                <!-- Lien report -->
+            </footer>
+        </div>
+
+        <!-- ========== COLONNE DROITE : INFORMATIONS ========== -->
+        <div class="cadre droit">
+            <!-- Conteneur infos droite -->
+
+            <!-- ========== SECTION INFOS PERSONNELLES ========== -->
+            <div class="info">
+                <!-- Section infos de base -->
+                
+                <p class="nom_user">
+                    <!-- Nom utilisateur -->
+                    <h2>
+                        Fatima N.
+                        <!-- Nom -->
+                        <span class="relationship-tag">Long-term</span>
+                        <!-- Tag type relation -->
+                    </h2>
+                </p>
+
+                <p class="school_user">
+                    <!-- École -->
+                    Computer Science @ University of Lagos
+                    <!-- Détails école -->
+                </p>
+
+                <p class="location_user">
+                    <!-- Localisation -->
+                    Lagos, Nigeria (5km away)
+                    <!-- Lieu et distance -->
+                </p>
+
+                <h3>ABOUT ME</h3>
+                <!-- Titre about -->
+                <p class="about">
+                    <!-- Texte about -->
+                    Aspiring software engineer who loves Afro-beats and weekend coding hackathons. 
+                    I'm usually the one debugging code at 2 AM with a cup of coffee. Looking for someone 
+                    ambitious who can match my energy and also appreciate a good pilaf rice spot in the city. 
+                    Let's build something great together! 🚀
+                    <!-- Description -->
+                </p>
+            </div>
+
+            <!-- ========== SECTION CARACTÉRISTIQUES ========== -->
+            <div class="characteristics">
+                <!-- Grille de caractéristiques -->
+
+                <div class="char-item">
+                    <!-- Item : Education -->
+                    <div class="char-icon">📚</div>
+                    <!-- Icône -->
+                    <div class="char-label">Education</div>
+                    <!-- Label -->
+                    <div class="char-value">Junior (3rd Year)</div>
+                    <!-- Valeur -->
+                </div>
+
+                <div class="char-item">
+                    <!-- Item : Height -->
+                    <div class="char-icon">📏</div>
+                    <!-- Icône -->
+                    <div class="char-label">Height</div>
+                    <!-- Label -->
+                    <div class="char-value">5'9 cm</div>
+                    <!-- Valeur -->
+                </div>
+
+                <div class="char-item">
+                    <!-- Item : Religion -->
+                    <div class="char-icon">🕌</div>
+                    <!-- Icône -->
+                    <div class="char-label">Religion</div>
+                    <!-- Label -->
+                    <div class="char-value">Muslim</div>
+                    <!-- Valeur -->
+                </div>
+
+                <div class="char-item">
+                    <!-- Item : Drinking -->
+                    <div class="char-icon">🍷</div>
+                    <!-- Icône -->
+                    <div class="char-label">Drinking</div>
+                    <!-- Label -->
+                    <div class="char-value">Socially</div>
+                    <!-- Valeur -->
+                </div>
+
+                <div class="char-item">
+                    <!-- Item : Smoking -->
+                    <div class="char-icon">🚭</div>
+                    <!-- Icône -->
+                    <div class="char-label">Smoking</div>
+                    <!-- Label -->
+                    <div class="char-value">Never</div>
+                    <!-- Valeur -->
+                </div>
+
+                <div class="char-item">
+                    <!-- Item : Languages -->
+                    <div class="char-icon">🗣️</div>
+                    <!-- Icône -->
+                    <div class="char-label">Languages</div>
+                    <!-- Label -->
+                    <div class="char-value">English, Yoruba</div>
+                    <!-- Valeur -->
+                </div>
+            </div>
+
+            <!-- ========== SECTION INTÉRÊTS ========== -->
+            <div class="interests">
+                <!-- Section intérêts -->
+                <h3>INTERESTS</h3>
+                <!-- Titre -->
+                <div class="interest-tags">
+                    <!-- Conteneur tags -->
+                    <div class="tag">
+                        <!-- Tag -->
+                        <span>💻</span>
+                        <!-- Icône -->
+                        Coding
+                        <!-- Texte -->
+                    </div>
+                    <div class="tag">
+                        <!-- Tag -->
+                        <span>📸</span>
+                        <!-- Icône -->
+                        Photography
+                        <!-- Texte -->
+                    </div>
+                    <div class="tag">
+                        <!-- Tag -->
+                        <span>🥾</span>
+                        <!-- Icône -->
+                        Hiking
+                        <!-- Texte -->
+                    </div>
+                    <div class="tag">
+                        <!-- Tag -->
+                        <span>🎵</span>
+                        <!-- Icône -->
+                        Afro-beats
+                        <!-- Texte -->
+                    </div>
+                    <div class="tag">
+                        <!-- Tag -->
+                        <span>🚀</span>
+                        <!-- Icône -->
+                        Startups
+                        <!-- Texte -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- ========== SECTION VALEURS ========== -->
+            <div class="values">
+                <!-- Section valeurs -->
+                <h3>VALUES</h3>
+                <!-- Titre -->
+                <div class="value-tags">
+                    <!-- Conteneur tags -->
+                    <div class="value-tag">Ambition</div>
+                    <!-- Tag valeur -->
+                    <div class="value-tag">Honesty</div>
+                    <!-- Tag valeur -->
+                    <div class="value-tag">Family-oriented</div>
+                    <!-- Tag valeur -->
+                </div>
+            </div>
+
+            <!-- ========== SECTION GALERIE ========== -->
+            <div class="gallery">
+                <!-- Galerie photos -->
+                <h3>GALLERY</h3>
+                <!-- Titre -->
+                <ul>
+                    <!-- Liste images -->
+                    <li><img src="./images/Image tst.jpeg" alt="Photo galerie 1"></li>
+                    <!-- Image 1 -->
+                    <li><img src="./images/Image tst.jpeg" alt="Photo galerie 2"></li>
+                    <!-- Image 2 -->
+                    <li><img src="./images/Image tst.jpeg" alt="Photo galerie 3"></li>
+                    <!-- Image 3 -->
+                </ul>
+            </div>
+
+            <!-- ========== FOOTER ========== -->
+            <footer class="foot">
+                <!-- Footer section droite -->
+                © 2025 Nexus Inc. Connecting Students Securely.
+                <!-- Copyright -->
+            </footer>
+        </div>
+    </div>
+
+</body>
+</html>

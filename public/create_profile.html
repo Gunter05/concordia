@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Création de profil</title>
+        <link rel="stylesheet" href="./css/create_profile.css">
+        <script src="./js/create-profile.js"></script>
+    </head>
+    <body>
+        <header>
+            <img src="./images/logo_concordia.png" alt="loge de Concordia">
+            <h2>Concordia</h2>
+
+            <p>Déjà membre ? <a href="login.html">Connexion</a></p>
+        </header>
+
+        <main>
+            <section class="profile-card">
+                <div class="form-box">
+                    <div class="form-box-header">
+                        <h1>Créons votre profil Concordia</h1>
+                        <p>Partagez un peu de vous pour rencontrer des étudiants qui vous correspondent.</p>
+                    </div>
+
+                    <div class="info-box">
+
+                        <div class="photoprofil">
+                            <h3>Photo de profil</h3>
+                            <div class="image-box" id="pp-box">
+                                <img src="./images/paspp.png" alt="paspp" class="paspp"/><br/>
+                                <span>Cliquer pour ajouter</span><br/> 
+                                ou glisser-déposer ici
+                            </div>
+                            <small>Astuce: les profils avec une photo souriante reçoivent 4x plus de messages.</small>
+                            <form action="">
+                                <input type="file" name="pp" id="pp" style="visibility: hidden;"/>
+                            </form>
+                        </div>
+
+                        <div class="form-filling">
+                            <form action="post">
+                                <div class="fist-form-group">
+                                    <div class="fist-form-input-group">
+                                        <label for="birthdate">Date de naissance</label><br/>
+                                        <input type="date" name="birthdate" id="birthdate" placeholder="05/08/2007">
+                                    </div>
+                                    <div class="fist-form-input-group">
+                                        <label for="sexe">Sexe</label><br/>
+                                        <select name="sexe" id="sexe">
+                                            <option value="homme">Masculin</option>
+                                            <option value="femme">Feminin</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                
+                                <div>
+                                    <label for="ethnies">Ethnie</label>
+                                    <select name="ethnies" id="ethnies">
+                                        <option value="">Je m’identifie comme...</option>
+
+                                        <optgroup label="Grassfields (Ouest / Nord-Ouest)">
+                                            <option value="bamileke">Bamiléké</option>
+                                            <option value="bamoun">Bamoun</option>
+                                            <option value="tikar">Tikar</option>
+                                            <option value="widikum">Widikum</option>
+                                            <option value="kom">Kom</option>
+                                            <option value="nso">Nso</option>
+                                        </optgroup>
+
+                                        <optgroup label="Sawa (Littoral / Sud-Ouest)">
+                                            <option value="douala">Douala</option>
+                                            <option value="bassa">Bassa</option>
+                                            <option value="bakweri">Bakweri</option>
+                                            <option value="dual">Duala</option>
+                                            <option value="batanga">Batanga</option>
+                                            <option value="bakoko">Bakoko</option>
+                                            <option value="yabassi">Yabassi</option>
+                                        </optgroup>
+
+                                        <optgroup label="Fang-Beti-Boulou (Centre / Sud / Est)">
+                                            <option value="ewondo">Ewondo</option>
+                                            <option value="boulou">Bulu</option>
+                                            <option value="eton">Eton</option>
+                                            <option value="fang">Fang</option>
+                                            <option value="bene">Béné</option>
+                                            <option value="manguissa">Manguissa</option>
+                                            <option value="mvele">Mvélé</option>
+                                        </optgroup>
+
+                                        <optgroup label="Soudano-Sahéliens (Grand Nord)">
+                                            <option value="peul">Peul (Foulbé)</option>
+                                            <option value="kirdi">Kirdi</option>
+                                            <option value="mafa">Mafa</option>
+                                            <option value="toupouri">Toupouri</option>
+                                            <option value="moundang">Moundang</option>
+                                            <option value="guiziga">Guiziga</option>
+                                            <option value="massa">Massa</option>
+                                            <option value="kotoko">Kotoko</option>
+                                        </optgroup>
+
+                                        <optgroup label="Peuples de la forêt">
+                                            <option value="baka">Baka (Pygmées)</option>
+                                            <option value="maka">Maka</option>
+                                            <option value="kakko">Kakko</option>
+                                            <option value="badjoue">Badjoué</option>
+                                        </optgroup>
+
+                                        <option value="autre">Autre ethnie...</option>
+                                    </select>
+                                </div>
+
+                                <label for="Bio">Bio</label> <br/>
+                                <textarea name="Bio" id="bio" placeholder="Je suis étudiant en droit à l’école... J’aime le café et les débats passionnés."></textarea>
+                                <br/>
+                                <label for="loisirs">Loisirs</label>
+                                <div>
+                                    <select name="loisirs" id="loisirs">
+                                        <option value="">Ajouter un tag (ex: Cuisine)</option>
+                                        
+                                        <option value="lecture">Lecture</option>
+                                        <option value="cinema">Cinéma</option>
+                                        <option value="musique">Musique</option>
+                                        <option value="voyage">Voyage</option>
+                                        <option value="jeux_video">Jeux vidéo</option>
+                                        <option value="photographie">Photographie</option>
+                                        
+                                        <option value="sport">Sport / Fitness</option>
+                                        <option value="randonnee">Randonnée</option>
+                                        <option value="natation">Natation</option>
+                                        <option value="cyclisme">Cyclisme</option>
+                                        <option value="yoga">Yoga</option>
+
+                                        <option value="cuisine">Cuisine</option>
+                                        <option value="dessin">Dessin / Peinture</option>
+                                        <option value="jardinage">Jardinage</option>
+                                        <option value="bricolage">Bricolage</option>
+                                        <option value="couture">Couture</option>
+                                        <option value="danse">Danse</option>
+                                        
+                                        <option value="benevolat">Bénévolat</option>
+                                        <option value="autre">Autre</option>
+                                    </select>
+                                    <div id="loisirs-box" class="list-loisirs"></div>
+                                </div>
+                                <br/>
+                                <label for="ecoles">Écoles</label>
+                                <select name="ecoles" id="ecoles">
+                                    <option value="saint jean ingenieur">Saint Jean Ingénieur</option>
+                                    <option value="saint jean school of management">Saint Jean School of Management</option>
+                                    <option value="prepavogt">PrepaVogt</option>
+                                    <option value="cpge">CPGE</option>
+                                    <option value="prepa saint jean">Prepa Saint Jean</option>
+                                    <option value="saint jean ingenieur etok koss">Saint Jean Ingenieur - Etok Koss</option>
+                                </select>
+
+                                <label for="religion">Religion / Croyance</label>
+                                <select name="religion" id="religion">
+                                    <option value="christianisme">Christianisme</option>
+                                    <option value="islam">islam</option>
+                                    <option value="null">Pas de religion</option>
+                                </select>
+
+                                <label for="intention">Intention relationnelle</label>
+                                <select name="intention" id="intention">
+                                    <option value="amitié">Amitié</option>
+                                    <option value="relation">Relation</option>
+                                    <option value="découverte">Découverte</option>
+                                </select>
+
+                                
+                            </form>
+                            <hr class="footer-hr">
+                            <div>
+                                <button type="submit" class="btn-submit" id="continuer">Continuer</button>
+                                <small class="footer-text">Vos données sont protégées et chiffrées.</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </section>
+        </main>
+    </body>
+</html>

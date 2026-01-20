@@ -1,0 +1,1132 @@
+/* ============= VARIABLES CSS ============= */
+/* Définition centralisée des couleurs et espacements */
+:root {
+    /* Couleurs primaires */
+    --primary-purple: #7c3aed;
+    /* Violet principal */
+    --primary-blue: #607afb;
+    /* Bleu secondaire */
+    --primary-red: #ef4444;
+    /* Rouge pour actions importantes */
+    
+    /* Couleurs neutres */
+    --text-dark: #1a1a1a;
+    /* Texte foncé (noir) */
+    --text-light: #ffffff;
+    /* Texte blanc */
+    --text-muted: #666666;
+    /* Texte gris moyen */
+    --text-hint: #999999;
+    /* Texte gris clair */
+    
+    /* Couleurs fond */
+    --bg-light: #f5f5f7;
+    /* Fond gris très clair */
+    --bg-white: #ffffff;
+    /* Fond blanc */
+    --bg-hover: #f0f0f2;
+    /* Fond au survol */
+    
+    /* Bordures */
+    --border-color: #e5e5e7;
+    /* Bordure grise subtile */
+    
+    /* Ombres */
+    --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.08);
+    /* Petite ombre légère */
+    --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.12);
+    /* Ombre moyenne */
+    --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.15);
+    /* Grande ombre importante */
+    
+    /* Espacements */
+    --spacing-xs: 4px;
+    /* Très petit espacement */
+    --spacing-sm: 8px;
+    /* Petit espacement */
+    --spacing-md: 16px;
+    /* Espacement moyen */
+    --spacing-lg: 24px;
+    /* Grand espacement */
+    --spacing-xl: 32px;
+    /* Très grand espacement */
+    
+    /* Rayons */
+    --radius-sm: 4px;
+    /* Coins légèrement arrondis */
+    --radius-md: 8px;
+    /* Coins modérément arrondis */
+    --radius-lg: 12px;
+    /* Coins bien arrondis */
+}
+
+/* ============= RESET GLOBAL ============= */
+/* Réinitialisation des styles par défaut du navigateur */
+
+* {
+    /* Sélecteur universel */
+    margin: 0;
+    /* Supprime les marges */
+    padding: 0;
+    /* Supprime les paddings */
+    box-sizing: border-box;
+    /* Inclut padding et border dans la largeur totale */
+}
+
+html {
+    /* Racine du document */
+    scroll-behavior: smooth;
+    /* Défilement fluide */
+}
+
+body {
+    /* Corps du document */
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    /* Police système moderne et lisible */
+    background-color: var(--bg-light);
+    /* Fond gris clair */
+    color: var(--text-dark);
+    /* Texte foncé par défaut */
+    line-height: 1.6;
+    /* Hauteur de ligne pour meilleure lisibilité */
+}
+
+/* ============= HEADER / NAVBAR ============= */
+/* Barre de navigation en haut de la page */
+
+header {
+    /* En-tête principal */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    justify-content: space-between;
+    /* Espace entre éléments */
+    padding: var(--spacing-md) var(--spacing-lg);
+    /* Padding interne */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+    border-bottom: 1px solid var(--border-color);
+    /* Bordure inférieure subtile */
+    position: sticky;
+    /* Reste en haut au défilement */
+    top: 0;
+    /* Attaché en haut */
+    z-index: 100;
+    /* Au-dessus de tout contenu */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+}
+
+header img {
+    /* Logo de l'application */
+    width: 40px;
+    /* Largeur fixe */
+    height: 40px;
+    /* Hauteur fixe */
+    border-radius: 50%;
+    /* Complètement arrondi (cercle) */
+    object-fit: cover;
+    /* Remplit le cercle proportionnellement */
+    margin-right: var(--spacing-md);
+    /* Espacement à droite du texte */
+}
+
+header h2 {
+    /* Titre de l'application */
+    font-size: 24px;
+    /* Grande taille */
+    font-weight: 700;
+    /* Très gras (bold) */
+    color: var(--text-dark);
+    /* Texte foncé */
+    margin-right: auto;
+    /* Pousse la nav à droite */
+}
+
+nav {
+    /* Barre de navigation */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-xl);
+    /* Grand espace entre sections */
+}
+
+.choix {
+    /* Liste des liens de navigation */
+    display: flex;
+    /* Layout horizontal */
+    gap: var(--spacing-lg);
+    /* Grand espace entre liens */
+    list-style: none;
+    /* Supprime les puces */
+}
+
+.choix a {
+    /* Lien de navigation */
+    color: var(--text-muted);
+    /* Texte gris */
+    text-decoration: none;
+    /* Pas de soulignement */
+    font-weight: 500;
+    /* Semi-gras */
+    font-size: 14px;
+    /* Taille standard */
+    transition: color 0.2s;
+    /* Animation au survol */
+}
+
+.choix a:hover {
+    /* Au survol du lien */
+    color: var(--primary-purple);
+    /* Change en violet */
+}
+
+.icone {
+    /* Section icônes (profil) */
+    display: flex;
+    /* Layout horizontal */
+    gap: var(--spacing-md);
+    /* Espace entre icônes */
+    list-style: none;
+    /* Supprime les puces */
+    margin-left: var(--spacing-lg);
+    /* Espacement à gauche */
+}
+
+.icone a {
+    /* Icône (lien) */
+    width: 40px;
+    /* Largeur fixe */
+    height: 40px;
+    /* Hauteur fixe */
+    border-radius: 50%;
+    /* Complètement arrondi (cercle) */
+    display: flex;
+    /* Layout flexbox */
+    align-items: center;
+    /* Centre verticalement */
+    justify-content: center;
+    /* Centre horizontalement */
+    background-color: var(--bg-hover);
+    /* Fond gris clair */
+    color: var(--text-dark);
+    /* Couleur icône */
+    font-size: 20px;
+    /* Taille icône */
+    transition: all 0.2s;
+    /* Animation smooth */
+}
+
+.icone a:hover {
+    /* Au survol de l'icône */
+    background-color: var(--primary-purple);
+    /* Fond violet */
+    color: var(--text-light);
+    /* Icône blanche */
+}
+
+/* ============= BREADCRUMB ============= */
+/* Chemin de navigation (Home / Discover / Fatima N.) */
+
+.breadcrumb {
+    /* Conteneur du chemin */
+    display: flex;
+    /* Layout horizontal */
+    gap: var(--spacing-sm);
+    /* Petit espace entre éléments */
+    padding: var(--spacing-md) var(--spacing-lg);
+    /* Padding */
+    background-color: var(--bg-light);
+    /* Fond gris clair */
+    font-size: 13px;
+    /* Petite taille */
+    color: var(--text-muted);
+    /* Texte gris */
+}
+
+.breadcrumb a {
+    /* Lien du chemin */
+    color: var(--primary-purple);
+    /* Couleur violette */
+    text-decoration: none;
+    /* Pas de soulignement */
+    transition: color 0.2s;
+    /* Animation */
+}
+
+.breadcrumb a:hover {
+    /* Au survol */
+    text-decoration: underline;
+    /* Soulignage */
+}
+
+/* ============= CONTENEUR PRINCIPAL ============= */
+/* Layout à deux colonnes : image + informations */
+
+.main-container {
+    /* Conteneur principal */
+    display: flex;
+    /* Layout horizontal */
+    gap: var(--spacing-xl);
+    /* Grand espace entre colonnes */
+    padding: var(--spacing-xl);
+    /* Grand padding */
+    max-width: 1200px;
+    /* Largeur maximale */
+    margin: 0 auto;
+    /* Centré horizontalement */
+}
+
+/* ============= COLONNE GAUCHE : IMAGE ============= */
+/* Section avec la photo de profil */
+
+.container {
+    /* Conteneur image (colonne gauche) */
+    flex: 0 0 300px;
+    /* Largeur fixe 300px, ne rétrécit pas */
+    display: flex;
+    /* Layout vertical */
+    flex-direction: column;
+    /* Direction verticale */
+    gap: var(--spacing-md);
+    /* Espace entre éléments */
+}
+
+.image-box {
+    /* Cadre contenant l'image */
+    position: relative;
+    /* Position relative pour badge absolu */
+    border-radius: var(--radius-lg);
+    /* Coins bien arrondis */
+    overflow: hidden;
+    /* Masque débordement (image arrondie) */
+    box-shadow: var(--shadow-md);
+    /* Ombre moyenne */
+    height: 400px;
+    /* Hauteur fixe */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+}
+
+.image-box img {
+    /* Image de profil */
+    width: 100%;
+    /* Largeur 100% */
+    height: 100%;
+    /* Hauteur 100% */
+    object-fit: cover;
+    /* Remplit le cadre en conservant proportions */
+}
+
+.badge {
+    /* Badge (Relation sérieuse) */
+    position: absolute;
+    /* Position absolue sur l'image */
+    top: var(--spacing-lg);
+    /* Distance du haut */
+    left: var(--spacing-lg);
+    /* Distance de la gauche */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fond noir semi-transparent */
+    color: var(--text-light);
+    /* Texte blanc */
+    padding: var(--spacing-sm) var(--spacing-md);
+    /* Petit padding */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    font-size: 12px;
+    /* Petite taille */
+    font-weight: 600;
+    /* Semi-gras */
+    backdrop-filter: blur(4px);
+    /* Flou du fond derrière */
+    z-index: 10;
+    /* Au-dessus de l'image */
+}
+
+.badge.left {
+    /* Badge positionné à gauche */
+    /* Style appliqué via la classe */
+}
+
+.verified-badge {
+    /* Badge "Verified Student" */
+    position: absolute;
+    /* Position absolue */
+    bottom: var(--spacing-lg);
+    /* Distance du bas */
+    left: var(--spacing-lg);
+    /* Distance de la gauche */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-sm);
+    /* Petit espace */
+    background-color: rgba(0, 0, 0, 0.6);
+    /* Fond noir semi-transparent */
+    color: var(--text-light);
+    /* Texte blanc */
+    padding: var(--spacing-sm) var(--spacing-md);
+    /* Petit padding */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    font-size: 12px;
+    /* Petite taille */
+    font-weight: 600;
+    /* Semi-gras */
+    backdrop-filter: blur(4px);
+    /* Flou du fond */
+    z-index: 10;
+    /* Au-dessus de l'image */
+}
+
+.verified-badge i {
+    /* Icône verified */
+    font-size: 14px;
+    /* Taille icône */
+}
+
+/* ============= BOUTONS SOUS L'IMAGE ============= */
+/* Section Connect et Message */
+
+.image-btn {
+    /* Conteneur des boutons */
+    display: flex;
+    /* Layout horizontal */
+    gap: var(--spacing-md);
+    /* Espace entre boutons */
+}
+
+.btn {
+    /* Bouton général */
+    flex: 1;
+    /* Prend l'espace équitablement */
+    padding: var(--spacing-md) var(--spacing-lg);
+    /* Padding moyen */
+    border: none;
+    /* Pas de bordure */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    font-weight: 600;
+    /* Semi-gras */
+    cursor: pointer;
+    /* Curseur pointeur */
+    font-size: 14px;
+    /* Taille standard */
+    transition: all 0.2s;
+    /* Animation smooth */
+}
+
+.btn.connexion {
+    /* Bouton Connect */
+    background-color: var(--primary-purple);
+    /* Fond violet */
+    color: var(--text-light);
+    /* Texte blanc */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+}
+
+.btn.connexion:hover {
+    /* Au survol du bouton Connect */
+    background-color: #6d28d9;
+    /* Violet plus foncé */
+    box-shadow: var(--shadow-md);
+    /* Ombre plus importante */
+    transform: translateY(-2px);
+    /* Léger soulèvement */
+}
+
+.btn.msg {
+    /* Bouton Message */
+    background-color: var(--bg-light);
+    /* Fond gris clair */
+    color: var(--text-dark);
+    /* Texte foncé */
+    border: 2px solid var(--border-color);
+    /* Bordure grise */
+}
+
+.btn.msg:hover {
+    /* Au survol du bouton Message */
+    background-color: var(--bg-hover);
+    /* Fond plus foncé */
+    border-color: var(--text-muted);
+    /* Bordure plus foncée */
+}
+
+/* ============= FOOTER GAUCHE ============= */
+/* Section "Report Profile" */
+
+.footer {
+    /* Footer de la section image */
+    text-align: center;
+    /* Texte centré */
+    padding: var(--spacing-md);
+    /* Petit padding */
+}
+
+.footer p {
+    /* Texte du footer */
+    color: var(--text-muted);
+    /* Texte gris */
+    font-size: 13px;
+    /* Petite taille */
+    cursor: pointer;
+    /* Curseur pointeur */
+    transition: color 0.2s;
+    /* Animation */
+}
+
+.footer p:hover {
+    /* Au survol du lien */
+    color: var(--primary-red);
+    /* Couleur rouge */
+}
+
+/* ============= COLONNE DROITE : INFORMATIONS ============= */
+/* Section avec les infos personnelles */
+
+.cadre {
+    /* Conteneur principal droit */
+    flex: 1;
+    /* Prend l'espace restant */
+    display: flex;
+    /* Layout vertical */
+    flex-direction: column;
+    /* Direction verticale */
+    gap: var(--spacing-lg);
+    /* Grand espace entre sections */
+}
+
+.cadre.droit {
+    /* Classe optionnelle pour identifier le côté droit */
+    /* Pas de style supplémentaire requis */
+}
+
+/* ============= SECTION INFOS PERSONNELLES ============= */
+/* Nom, école, lieu, about, etc. */
+
+.info {
+    /* Conteneur des infos */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+    border-radius: var(--radius-lg);
+    /* Coins bien arrondis */
+    padding: var(--spacing-xl);
+    /* Grand padding */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+    border: 1px solid var(--border-color);
+    /* Bordure subtile */
+}
+
+.nom_user {
+    /* Paragraphe contenant le nom */
+    margin: 0;
+    /* Pas de marge */
+}
+
+.nom_user h2 {
+    /* Titre nom utilisateur */
+    font-size: 28px;
+    /* Grande taille */
+    font-weight: 700;
+    /* Très gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    margin: 0 0 var(--spacing-sm) 0;
+    /* Petit espacement inférieur */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-md);
+    /* Espace avec badge */
+}
+
+.relationship-tag {
+    /* Tag "Long-term" */
+    background-color: #a78bfa;
+    /* Fond violet clair */
+    color: var(--text-light);
+    /* Texte blanc */
+    padding: 4px 12px;
+    /* Petit padding */
+    border-radius: var(--radius-full);
+    /* Complètement arrondi (pilule) */
+    font-size: 12px;
+    /* Petite taille */
+    font-weight: 600;
+    /* Semi-gras */
+}
+
+.school_user {
+    /* Texte école */
+    color: var(--text-muted);
+    /* Texte gris */
+    font-size: 14px;
+    /* Taille standard */
+    margin: var(--spacing-xs) 0;
+    /* Petit espacement */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-sm);
+    /* Petit espace */
+}
+
+.school_user::before {
+    /* Icône avant le texte */
+    content: '🎓';
+    /* Emoji mortier */
+    font-size: 16px;
+    /* Taille emoji */
+}
+
+.location_user {
+    /* Texte localisation */
+    color: var(--text-muted);
+    /* Texte gris */
+    font-size: 14px;
+    /* Taille standard */
+    margin: var(--spacing-xs) 0 var(--spacing-lg) 0;
+    /* Espacements */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-sm);
+    /* Petit espace */
+}
+
+.location_user::before {
+    /* Icône avant le texte */
+    content: '📍';
+    /* Emoji localisation */
+    font-size: 16px;
+    /* Taille emoji */
+}
+
+.info h3 {
+    /* Titre de section (ABOUT ME, INTERESTS, VALUES) */
+    font-size: 14px;
+    /* Petite taille */
+    font-weight: 700;
+    /* Très gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    text-transform: uppercase;
+    /* Majuscules */
+    letter-spacing: 0.5px;
+    /* Espacement des lettres */
+    margin: var(--spacing-lg) 0 var(--spacing-md) 0;
+    /* Espacements */
+}
+
+.about {
+    /* Texte "About me" */
+    color: var(--text-muted);
+    /* Texte gris */
+    font-size: 14px;
+    /* Taille standard */
+    line-height: 1.6;
+    /* Hauteur de ligne */
+    margin: 0;
+    /* Pas de marge */
+}
+
+/* ============= SECTION CARACTÉRISTIQUES ============= */
+/* Education, Drinking, Smoking, etc. */
+
+.characteristics {
+    /* Conteneur caractéristiques */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+    border-radius: var(--radius-lg);
+    /* Coins bien arrondis */
+    padding: var(--spacing-xl);
+    /* Grand padding */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+    border: 1px solid var(--border-color);
+    /* Bordure subtile */
+    display: grid;
+    /* Layout grille */
+    grid-template-columns: 1fr 1fr;
+    /* Deux colonnes égales */
+    gap: var(--spacing-lg);
+    /* Grand espace entre items */
+}
+
+.char-item {
+    /* Item caractéristique */
+    display: flex;
+    /* Layout vertical */
+    flex-direction: column;
+    /* Direction verticale */
+    gap: var(--spacing-sm);
+    /* Petit espace */
+}
+
+.char-icon {
+    /* Icône caractéristique */
+    font-size: 24px;
+    /* Grande taille */
+    margin-bottom: var(--spacing-xs);
+    /* Petit espacement */
+}
+
+.char-label {
+    /* Label caractéristique */
+    font-size: 12px;
+    /* Petite taille */
+    color: var(--text-hint);
+    /* Texte très gris */
+    text-transform: uppercase;
+    /* Majuscules */
+    letter-spacing: 0.3px;
+    /* Espacement lettres */
+}
+
+.char-value {
+    /* Valeur caractéristique */
+    font-size: 15px;
+    /* Taille standard */
+    font-weight: 600;
+    /* Semi-gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+}
+
+/* ============= SECTION INTÉRÊTS ============= */
+/* Tags des hobbies */
+
+.interests {
+    /* Conteneur intérêts */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+    border-radius: var(--radius-lg);
+    /* Coins bien arrondis */
+    padding: var(--spacing-xl);
+    /* Grand padding */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+    border: 1px solid var(--border-color);
+    /* Bordure subtile */
+}
+
+.interests h3 {
+    /* Titre intérêts */
+    font-size: 14px;
+    /* Petite taille */
+    font-weight: 700;
+    /* Très gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    text-transform: uppercase;
+    /* Majuscules */
+    letter-spacing: 0.5px;
+    /* Espacement lettres */
+    margin-bottom: var(--spacing-md);
+    /* Espacement inférieur */
+}
+
+.interest-tags {
+    /* Conteneur tags */
+    display: flex;
+    /* Layout horizontal */
+    flex-wrap: wrap;
+    /* Wrap sur plusieurs lignes */
+    gap: var(--spacing-sm);
+    /* Petit espace entre tags */
+}
+
+.tag {
+    /* Tag d'intérêt */
+    background-color: #f0e6ff;
+    /* Fond violet très clair */
+    color: var(--primary-purple);
+    /* Texte violet */
+    padding: 6px 12px;
+    /* Petit padding */
+    border-radius: var(--radius-full);
+    /* Complètement arrondi (pilule) */
+    font-size: 13px;
+    /* Petite taille */
+    font-weight: 500;
+    /* Semi-gras */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-sm);
+    /* Petit espace */
+    border: 1px solid #e9d5ff;
+    /* Bordure violet très clair */
+    transition: all 0.2s;
+    /* Animation */
+}
+
+.tag:hover {
+    /* Au survol du tag */
+    background-color: #e9d5ff;
+    /* Fond plus foncé */
+    transform: translateY(-2px);
+    /* Léger soulèvement */
+}
+
+.tag::before {
+    /* Icône avant le texte */
+    /* Peut être définie en JS */
+    font-size: 16px;
+    /* Taille icône */
+}
+
+/* ============= SECTION VALEURS ============= */
+/* Tags des valeurs */
+
+.values {
+    /* Conteneur valeurs */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+    border-radius: var(--radius-lg);
+    /* Coins bien arrondis */
+    padding: var(--spacing-xl);
+    /* Grand padding */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+    border: 1px solid var(--border-color);
+    /* Bordure subtile */
+}
+
+.values h3 {
+    /* Titre valeurs */
+    font-size: 14px;
+    /* Petite taille */
+    font-weight: 700;
+    /* Très gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    text-transform: uppercase;
+    /* Majuscules */
+    letter-spacing: 0.5px;
+    /* Espacement lettres */
+    margin-bottom: var(--spacing-md);
+    /* Espacement inférieur */
+}
+
+.value-tags {
+    /* Conteneur tags valeurs */
+    display: flex;
+    /* Layout horizontal */
+    flex-wrap: wrap;
+    /* Wrap sur plusieurs lignes */
+    gap: var(--spacing-sm);
+    /* Petit espace entre tags */
+}
+
+.value-tag {
+    /* Tag valeur */
+    background-color: #e0e7ff;
+    /* Fond bleu très clair */
+    color: var(--primary-blue);
+    /* Texte bleu */
+    padding: 6px 12px;
+    /* Petit padding */
+    border-radius: var(--radius-full);
+    /* Complètement arrondi (pilule) */
+    font-size: 13px;
+    /* Petite taille */
+    font-weight: 500;
+    /* Semi-gras */
+    border: 1px solid #c7d2fe;
+    /* Bordure bleu très clair */
+    transition: all 0.2s;
+    /* Animation */
+}
+
+.value-tag:hover {
+    /* Au survol du tag */
+    background-color: #c7d2fe;
+    /* Fond plus foncé */
+    transform: translateY(-2px);
+    /* Léger soulèvement */
+}
+
+/* ============= SECTION GALERIE ============= */
+/* Photos supplémentaires */
+
+.gallery {
+    /* Conteneur galerie */
+    background-color: var(--bg-white);
+    /* Fond blanc */
+    border-radius: var(--radius-lg);
+    /* Coins bien arrondis */
+    padding: var(--spacing-xl);
+    /* Grand padding */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+    border: 1px solid var(--border-color);
+    /* Bordure subtile */
+}
+
+.gallery h3 {
+    /* Titre galerie */
+    font-size: 14px;
+    /* Petite taille */
+    font-weight: 700;
+    /* Très gras */
+    color: var(--text-dark);
+    /* Texte foncé */
+    text-transform: uppercase;
+    /* Majuscules */
+    letter-spacing: 0.5px;
+    /* Espacement lettres */
+    margin-bottom: var(--spacing-lg);
+    /* Espacement inférieur */
+}
+
+.gallery ul {
+    /* Liste images */
+    display: grid;
+    /* Layout grille */
+    grid-template-columns: repeat(3, 1fr);
+    /* Trois colonnes égales */
+    gap: var(--spacing-md);
+    /* Espace entre images */
+    list-style: none;
+    /* Supprime les puces */
+}
+
+.gallery li {
+    /* Item galerie */
+    position: relative;
+    /* Position relative */
+    border-radius: var(--radius-md);
+    /* Coins arrondis */
+    overflow: hidden;
+    /* Masque débordement */
+    aspect-ratio: 1;
+    /* Ratio 1:1 (carré) */
+    box-shadow: var(--shadow-sm);
+    /* Légère ombre */
+}
+
+.gallery img {
+    /* Image galerie */
+    width: 100%;
+    /* Largeur 100% */
+    height: 100%;
+    /* Hauteur 100% */
+    object-fit: cover;
+    /* Remplit le cadre */
+    transition: transform 0.3s;
+    /* Animation zoom */
+}
+
+.gallery li:hover img {
+    /* Au survol de l'image */
+    transform: scale(1.05);
+    /* Légère augmentation */
+}
+
+/* ============= FOOTER DROIT ============= */
+/* Copyright en bas */
+
+.foot {
+    /* Footer section droit */
+    text-align: center;
+    /* Texte centré */
+    padding: var(--spacing-lg);
+    /* Padding */
+    color: var(--text-hint);
+    /* Texte très gris */
+    font-size: 12px;
+    /* Très petite taille */
+    border-top: 1px solid var(--border-color);
+    /* Bordure supérieure */
+}
+
+/* ============= MATCH SCORE ============= */
+/* Pourcentage de compatibilité (92%) */
+
+.match-score {
+    /* Conteneur score match */
+    position: absolute;
+    /* Position absolue */
+    top: var(--spacing-lg);
+    /* Distance du haut */
+    right: var(--spacing-lg);
+    /* Distance de la droite */
+    background-color: rgba(255, 255, 255, 0.95);
+    /* Fond blanc semi-transparent */
+    border-radius: var(--radius-lg);
+    /* Coins bien arrondis */
+    padding: var(--spacing-md) var(--spacing-lg);
+    /* Padding moyen */
+    display: flex;
+    /* Layout horizontal */
+    align-items: center;
+    /* Centre verticalement */
+    gap: var(--spacing-sm);
+    /* Petit espace */
+    backdrop-filter: blur(4px);
+    /* Flou du fond */
+    box-shadow: var(--shadow-md);
+    /* Ombre moyenne */
+}
+
+.score-number {
+    /* Nombre pourcentage */
+    font-size: 24px;
+    /* Grande taille */
+    font-weight: 700;
+    /* Très gras */
+    color: var(--primary-purple);
+    /* Texte violet */
+}
+
+.score-label {
+    /* Label "Match Score" */
+    font-size: 12px;
+    /* Petite taille */
+    color: var(--text-muted);
+    /* Texte gris */
+    font-weight: 600;
+    /* Semi-gras */
+}
+
+.score-icon {
+    /* Icône match (spark) */
+    font-size: 20px;
+    /* Taille icône */
+    color: var(--primary-purple);
+    /* Couleur violette */
+}
+
+/* ============= RESPONSIVE ============= */
+/* Adaptation pour petits écrans */
+
+@media (max-width: 1024px) {
+    /* Tablettes et petits ordinateurs */
+    
+    .main-container {
+        /* Conteneur principal */
+        flex-direction: column;
+        /* Une colonne verticale */
+        align-items: center;
+        /* Centre les éléments */
+    }
+
+    .container {
+        /* Conteneur image */
+        flex: 0 0 auto;
+        /* Taille auto */
+        width: 100%;
+        /* Largeur 100% */
+        max-width: 400px;
+        /* Largeur maximale */
+    }
+
+    .cadre {
+        /* Conteneur droit */
+        width: 100%;
+        /* Largeur 100% */
+    }
+
+    .characteristics {
+        /* Grille caractéristiques */
+        grid-template-columns: 1fr;
+        /* Une seule colonne */
+    }
+}
+
+@media (max-width: 768px) {
+    /* Téléphones */
+    
+    header {
+        /* En-tête */
+        flex-wrap: wrap;
+        /* Wrap sur plusieurs lignes */
+        padding: var(--spacing-md);
+        /* Padding réduit */
+    }
+
+    header h2 {
+        /* Titre header */
+        font-size: 20px;
+        /* Taille réduite */
+        margin-right: var(--spacing-md);
+        /* Espacement réduit */
+    }
+
+    .choix {
+        /* Liste navigation */
+        gap: var(--spacing-md);
+        /* Espace réduit */
+        font-size: 12px;
+        /* Petite taille */
+    }
+
+    .main-container {
+        /* Conteneur principal */
+        padding: var(--spacing-md);
+        /* Padding réduit */
+        gap: var(--spacing-md);
+        /* Espace réduit */
+    }
+
+    .container {
+        /* Conteneur image */
+        flex: 1;
+        /* Prend l'espace */
+    }
+
+    .image-box {
+        /* Cadre image */
+        height: 300px;
+        /* Hauteur réduite */
+    }
+
+    .info {
+        /* Section infos */
+        padding: var(--spacing-lg);
+        /* Padding réduit */
+    }
+
+    .nom_user h2 {
+        /* Titre nom */
+        font-size: 22px;
+        /* Taille réduite */
+    }
+
+    .gallery ul {
+        /* Galerie */
+        grid-template-columns: repeat(2, 1fr);
+        /* Deux colonnes */
+        gap: var(--spacing-sm);
+        /* Espace réduit */
+    }
+
+    .characteristics {
+        /* Caractéristiques */
+        grid-template-columns: 1fr;
+        /* Une colonne */
+    }
+
+    .match-score {
+        /* Score match */
+        top: var(--spacing-md);
+        /* Distance réduite */
+        right: var(--spacing-md);
+        /* Distance réduite */
+        font-size: 14px;
+        /* Taille réduite */
+    }
+}
