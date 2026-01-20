@@ -91,7 +91,7 @@ body {
     overflow: hidden;
     transition: 1s;
     position: absolute;
-    top: 150px;
+    top: 75px;
     left: calc(50% - 180px);
 }
 

@@ -9,7 +9,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 const card = document.createElement("div");
                 card.className = "card";
                 card.innerHTML = `
-                    <div class="image-box">
+                    <div class="image-box" id="${user._id}">
                         <span class="badge left" style="color: white;">${user.relation || "Relation sérieuse"}</span>
                         <img src="${user.photo || './images/default.jpg'}" alt="Profil">
                         <span class="badge bottomleft">
@@ -33,6 +33,10 @@ document.addEventListener("DOMContentLoaded", function() {
                     </div>
                 `;
                 stack.appendChild(card);
+                document.getElementById(`${user._id}`).addEventListener("click",function(){
+                    localStorage.setItem("profile", JSON.stringify(user));
+                    window.location.href= "Info_pers.html";
+                });
             });
         })
         .catch(error => {
