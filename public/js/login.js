@@ -30,7 +30,36 @@ let login= true;
 
     document.getElementById("login-btn").addEventListener("click", function(){
         if(login){
+            var xhr = new XMLHttpRequest();
 
+            xhr.open("POST", "https://nexus-api-ill3.onrender.com/api/users/login", true);
+
+            xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xhr.withCredentials= true;
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4) { // 4 = DONE
+                    if (xhr.status === 201) {
+                        // Succès : traiter la réponse
+                        console.log("Réponse du serveur :", xhr.responseText);
+                        
+                        console.log("responsetext: " + xhr.responseText);
+                        console.log("response: " + xhr.response);
+                        localStorage.setItem("loggedInUser", xhr.response);
+                        window.location.href= "decouverte.html";
+                    } else {
+                        // Erreur
+                        console.error("Erreur :", xhr.status, xhr.statusText);
+                    }
+                }
+            };
+            
+            var data = {
+                email: document.getElementById("email").value,
+                password: document.getElementById("password").value,
+            };
+
+            // Envoi de la requête avec les données converties en JSON
+            xhr.send(JSON.stringify(data));
         }
         else{
             let user={
