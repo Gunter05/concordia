@@ -81,51 +81,13 @@
                             <div class="section-title">Discussions</div>
                         </div>
                         <div class="discussions-list" id="discussion-list">
-                            <div class="discussion-item active" data-user-id="101">
-                                <div class="discussion-avatar">
-                                    <div class="avatar-img" style="background-image: url('https://via.placeholder.com/56');"></div>
-                                    <div class="online-indicator"></div>
-                                </div>
-                                <div class="discussion-content">
-                                    <div class="discussion-header">
-                                        <span class="discussion-name">Amina</span>
-                                        <span class="material-symbols-outlined verified-icon">verified</span>
-                                    </div>
-                                    <div class="discussion-preview">Droit ! Enchantée 😊</div>
-                                </div>
-                                <div class="discussion-meta">
-                                    <div class="discussion-time">10:42</div>
-                                    <div class="unread-count">1</div>
-                                </div>
-                            </div>
-                            <div class="discussion-item" data-user-id="102">
-                                <div class="discussion-avatar">
-                                    <div class="avatar-img" style="background-image: url('https://via.placeholder.com/56');"></div>
-                                </div>
-                                <div class="discussion-content">
-                                    <div class="discussion-header">
-                                        <span class="discussion-name">Kwame</span>
-                                    </div>
-                                    <div class="discussion-preview">On se voit demain pour le café ?</div>
-                                </div>
-                                <div class="discussion-meta">
-                                    <div class="discussion-time">Hier</div>
-                                </div>
-                            </div>
-                            <div class="discussion-item" data-user-id="103">
-                                <div class="discussion-avatar">
-                                    <div class="avatar-img" style="background-image: url('https://via.placeholder.com/56');"></div>
-                                </div>
-                                <div class="discussion-content">
-                                    <div class="discussion-header">
-                                        <span class="discussion-name">Binta</span>
-                                    </div>
-                                    <div class="discussion-preview">Hahaha c'est trop drôle 😂</div>
-                                </div>
-                                <div class="discussion-meta">
-                                    <div class="discussion-time">Lun</div>
-                                </div>
-                            </div>
+                            <!-- Discussions will be populated here -->
+                        </div>
+                        <!-- Empty state when no discussions -->
+                        <div id="empty-discussions-state" style="display: none; padding: 40px 24px; text-align: center; color: #999;">
+                            <i class='bx bx-comment' style="font-size: 48px; margin-bottom: 12px; display: block; opacity: 0.5;"></i>
+                            <p style="font-size: 16px; margin: 0; font-weight: 500;">Pas de discussions</p>
+                            <p style="font-size: 13px; margin: 8px 0 0 0; color: #bbb;">Commencez une conversation avec vos matchs</p>
                         </div>
                     </div>
                 </div>
@@ -163,45 +125,14 @@
 
                 <!-- Zone des Messages -->
                 <div class="messages-container" id="messages-container">
-                    <div class="system-message">
-                        <div class="system-text">Vous avez matché avec Amina le 12 Octobre</div>
-                    </div>
-
-                    <div class="message received">
-                        <div class="message-avatar">
-                            <div class="avatar-img" style="background-image: url('https://via.placeholder.com/32');"></div>
-                        </div>
-                        <div class="message-content">
-                            <div class="message-bubble">
-                                <div class="message-text">Salut ! J'ai vu que tu études aussi à Dakar ?</div>
-                            </div>
-                            <div class="message-time">10:40</div>
-                        </div>
-                    </div>
-
-                    <div class="message sent">
-                        <div class="message-content">
-                            <div class="message-bubble">
-                                <div class="message-text">Oui, exactement ! En ingénierie. Et toi ?</div>
-                            </div>
-                            <div class="message-time">10:41</div>
-                        </div>
-                        <div class="message-avatar">
-                            <div class="avatar-img" style="background-image: url('https://via.placeholder.com/32');"></div>
-                        </div>
-                    </div>
-
-                    <div class="message received">
-                        <div class="message-avatar">
-                            <div class="avatar-img" style="background-image: url('https://via.placeholder.com/32');"></div>
-                        </div>
-                        <div class="message-content">
-                            <div class="message-bubble">
-                                <div class="message-text">Droit ! Enchantée 😊</div>
-                            </div>
-                            <div class="message-time">10:42</div>
-                        </div>
-                    </div>
+                    <!-- Messages will be populated here -->
+                </div>
+                
+                <!-- Empty state when no messages -->
+                <div id="empty-messages-state" style="display: none; flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; color: #999; padding: 40px 24px;">
+                    <i class='bx bxs-message-square-dots' style="font-size: 64px; margin-bottom: 16px; opacity: 0.5; display: block;"></i>
+                    <p style="font-size: 18px; margin: 0; font-weight: 500;">Aucun message</p>
+                    <p style="font-size: 14px; margin: 8px 0 0 0; color: #bbb; text-align: center;">Commencez une conversation en envoyant un message</p>
                 </div>
 
                 <!-- Zone de Saisie -->

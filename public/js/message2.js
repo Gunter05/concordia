@@ -4,7 +4,9 @@ import { sendMessage, fetchMessages, fetchConversations } from './message_utils.
 const messageInput = document.getElementById('message-input');
 const sendBtn = document.getElementById('send-btn');
 const messagesContainer = document.getElementById('messages-container');
+const emptyMessagesState = document.getElementById('empty-messages-state');
 const discussionList = document.getElementById('discussion-list');
+const emptyDiscussionsState = document.getElementById('empty-discussions-state');
 const newMatchesList = document.getElementById('new-matches-list');
 const chatUserName = document.getElementById('chat-user-name');
 const chatUserAvatar = document.getElementById('chat-user-avatar');
@@ -72,6 +74,15 @@ function loadConversations() {
  */
 function updateDiscussionsList(conversations) {
     discussionList.innerHTML = '';
+    
+    if (conversations.length === 0) {
+        // Show empty state
+        emptyDiscussionsState.style.display = 'block';
+        return;
+    }
+    
+    // Hide empty state
+    emptyDiscussionsState.style.display = 'none';
     
     conversations.forEach((conversation, index) => {
         // Find the other participant (not the logged-in user)
@@ -178,9 +189,19 @@ function loadMessages(withUserId) {
  * Display messages in the chat container
  */
 function displayMessages(messages) {
-    // Clear existing messages (keep system message if needed)
-    const messageElements = messagesContainer.querySelectorAll('.message, .system-message');
-    messageElements.forEach(msg => msg.remove());
+    // Clear existing messages
+    messagesContainer.innerHTML = '';
+    
+    if (messages.length === 0) {
+        // Show empty state
+        messagesContainer.style.display = 'none';
+        emptyMessagesState.style.display = 'flex';
+        return;
+    }
+    
+    // Hide empty state
+    messagesContainer.style.display = 'block';
+    emptyMessagesState.style.display = 'none';
 
     messages.forEach(message => {
         const messageElement = createMessageElement(message);
