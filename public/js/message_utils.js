@@ -18,7 +18,7 @@ export function sendMessage(toUserId, messageText, callback) {
                 if (callback) callback(xhr.response);
             } else {
                 // Erreur
-                console.error("Erreur :", xhr.status, xhr.statusText);
+                console.error("Erreur :", xhr.status, xhr.statusText, xhr.responseText);
             }
         }
     };
@@ -51,7 +51,7 @@ export function fetchMessages(withUserId, callback) {
                 if (callback) callback(xhr.response);
             } else {
                 // Erreur
-                console.error("Erreur :", xhr.status, xhr.statusText);
+                console.error("Erreur :", xhr.status, xhr.statusText, xhr.responseText);
             }
         }
     };
@@ -83,7 +83,7 @@ export function fetchConversations(callback){
                 if (callback) callback(xhr.response);
             } else {
                 // Erreur
-                console.error("Erreur :", xhr.status, xhr.statusText);
+                console.error("Erreur :", xhr.status, xhr.statusText, xhr.responseText);
             }
         }
     };
