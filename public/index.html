@@ -153,7 +153,7 @@
 
         .hero-desc {
             font-size: 1.125rem;
-            color: transparent;
+            color: var(--gray);
             margin-bottom: 2.5rem;
             max-width: 500px;
         }
@@ -207,10 +207,10 @@
             transform: translateY(-50%);
             width: 50%;
             height: 70%;
-            background: linear-gradient(135deg, var(--primary-soft), white);
+            background: transparent;
             border-radius: 40px 0 0 40px;
             display: flex;
-            align-items: center;
+            align-items: justify;
             justify-content: center;
             box-shadow: var(--shadow-lg);
             overflow: hidden;
@@ -520,7 +520,7 @@
             <nav class="nav">
                 <a href="#" class="logo">
                     <div class="logo-icon">
-                        <img src="./images/logo_concordia.png" alt="logo concordia" class='bx bxs-heart'/>
+                        <img src="./images/logo_concordia.png" alt="logo concordia" class='bx bxs-heart' width="40px" height="40px"/>
                     </div>
                     Concordia
                 </a>
@@ -547,10 +547,6 @@
                     <a href="login.html" class="btn btn-primary">
                         <i class='bx bxs-rocket'></i>
                         Commencer l'aventure
-                    </a>
-                    <a href="#features" class="btn btn-secondary">
-                        <i class='bx bxs-info-circle'></i>
-                        En savoir plus
                     </a>
                 </div>
             </div>
