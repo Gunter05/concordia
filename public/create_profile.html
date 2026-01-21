@@ -28,13 +28,13 @@
                         <div class="photoprofil">
                             <h3>Photo de profil</h3>
                             <div class="image-box" id="pp-box">
-                                <img src="./images/paspp.png" alt="paspp" class="paspp"/><br/>
+                                <img src="../public/images/paspp.png" alt="paspp" class="paspp"/><br/>
                                 <span>Cliquer pour ajouter</span><br/> 
                                 ou glisser-déposer ici
                             </div>
                             <small>Astuce: les profils avec une photo souriante reçoivent 4x plus de messages.</small>
                             <form action="">
-                                <input type="file" name="pp" id="pp" style="visibility: hidden;"/>
+                                <input type="file" name="pp" id="pp" accept="image/*" style="visibility: hidden;"/>
                             </form>
                         </div>
 
@@ -172,7 +172,7 @@
                             </form>
                             <hr class="footer-hr">
                             <div>
-                                <button type="submit" class="btn-submit" id="continuer">Continuer</button>
+                                <button type="button" id="continuer" class="btn-submit">Continuer</button>
                                 <small class="footer-text">Vos données sont protégées et chiffrées.</small>
                             </div>
                         </div>
