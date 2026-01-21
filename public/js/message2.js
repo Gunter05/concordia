@@ -74,8 +74,13 @@ function updateDiscussionsList(conversations) {
     discussionList.innerHTML = '';
     
     conversations.forEach((conversation, index) => {
-        const discussionItem = createDiscussionElement(conversation, index === 0);
-        discussionList.appendChild(discussionItem);
+        // Find the other participant (not the logged-in user)
+        const otherParticipant = conversation.participants.find(p => p._id !== loggedInUser._id);
+        
+        if (otherParticipant) {
+            const discussionItem = createDiscussionElement(conversation, otherParticipant, index === 0);
+            discussionList.appendChild(discussionItem);
+        }
     });
 
     setupDiscussionListeners();
@@ -84,27 +89,29 @@ function updateDiscussionsList(conversations) {
 /**
  * Create a discussion item element
  */
-function createDiscussionElement(conversation, isActive = false) {
+function createDiscussionElement(conversation, otherParticipant, isActive = false) {
     const div = document.createElement('div');
     div.className = `discussion-item ${isActive ? 'active' : ''}`;
-    div.setAttribute('data-user-id', conversation.userId);
+    div.setAttribute('data-user-id', otherParticipant._id);
+    div.setAttribute('data-conversation-id', conversation._id);
     
-    const lastMessage = conversation.lastMessage || 'Pas de messages';
-    const lastTime = conversation.lastMessageTime || 'Ancien';
-    const unreadCount = conversation.unreadCount || 0;
-    const isOnline = conversation.online || false;
+    const lastMessage = conversation.lastMessage?.content || 'Pas de messages';
+    const lastTime = formatTime(conversation.lastMessageAt);
+    const unreadCount = conversation.lastMessage?.read ? 0 : 1;
+    const userName = otherParticipant.nom || 'Unknown';
+    const userAvatar = otherParticipant.photos?.[0] 
+        ? `https://nexus-api-ill3.onrender.com/api/uploads/${otherParticipant.photos[0]}`
+        : 'https://via.placeholder.com/56';
 
     div.innerHTML = `
         <div class="discussion-avatar">
-            <div class="avatar-img" style="background-image: url('${conversation.userAvatar || 'https://via.placeholder.com/56'}');"></div>
-            ${isOnline ? '<div class="online-indicator"></div>' : ''}
+            <div class="avatar-img" style="background-image: url('${userAvatar}');"></div>
         </div>
         <div class="discussion-content">
             <div class="discussion-header">
-                <span class="discussion-name">${conversation.userName || 'Unknown'}</span>
-                ${conversation.verified ? '<span class="material-symbols-outlined verified-icon">verified</span>' : ''}
+                <span class="discussion-name">${userName}</span>
             </div>
-            <div class="discussion-preview">${lastMessage}</div>
+            <div class="discussion-preview">${escapeHtml(lastMessage)}</div>
         </div>
         <div class="discussion-meta">
             <div class="discussion-time">${lastTime}</div>
