@@ -48,11 +48,10 @@ document.addEventListener("DOMContentLoaded", function(){
                 if (xhr.status === 200) {
                     // Succès : traiter la réponse
                     console.log("Réponse du serveur :", xhr.responseText);
-                    
                     console.log("responsetext: " + xhr.responseText);
                     console.log("response: " + xhr.response);
                     localStorage.setItem("loggedInUser", xhr.response);
-                    window.location.href= "settings.html";
+                    // window.location.href= "settings.html";
                 } else {
                     // Erreur
                     console.error("Erreur :", xhr.status, xhr.statusText);
