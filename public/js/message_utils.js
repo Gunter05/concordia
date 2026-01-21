@@ -9,7 +9,7 @@ export function sendMessage(toUserId, messageText, callback) {
     xhr.withCredentials= true;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) { // 4 = DONE
-            if (xhr.status === 200) {
+            if ((xhr.status === 200) || (xhr.status === 201)) {
                 // Succès : traiter la réponse
                 console.log("Réponse du serveur :", xhr.responseText);
                 
@@ -42,7 +42,7 @@ export function fetchMessages(withUserId, callback) {
     xhr.withCredentials= true;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) { // 4 = DONE
-            if (xhr.status === 200) {
+            if ((xhr.status === 200) || (xhr.status === 201)) {
                 // Succès : traiter la réponse
                 console.log("Réponse du serveur :", xhr.responseText);
                 
@@ -74,7 +74,7 @@ export function fetchConversations(callback){
     xhr.withCredentials= true;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) { // 4 = DONE
-            if (xhr.status === 200) {
+            if ((xhr.status === 200) || (xhr.status === 201)) {
                 // Succès : traiter la réponse
                 console.log("Réponse du serveur :", xhr.responseText);
                 
