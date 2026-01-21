@@ -276,7 +276,7 @@ function handleSendMessage() {
 
             const messageElement = createMessageElement(newMessage);
             messagesContainer.appendChild(messageElement);
-
+            loadConversations();
             // Scroll to bottom
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
