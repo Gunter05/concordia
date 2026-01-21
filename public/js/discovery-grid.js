@@ -1,9 +1,9 @@
 // Variables globales
-let profiles = [];
+let profiles = []; // Array to hold all user profiles
 let filteredProfiles = [];
 let currentUser = null;
 
-const API_URL = '/api';
+const API_URL = 'https://nexus-api-ill3.onrender.com/api/users/api';
 
 // Logging utility
 const log = (msg, data = null) => console.log(`[Discovery-Grid.js] ${msg}`, data || '');
@@ -29,10 +29,13 @@ async function getCurrentUser() {
 }
 
 async function getSearchProfiles(filters = {}) {
+    profiles = []; // Reset profiles array before fetching new data
+
     try {
         log('Récupération des profils avec filtres:', filters);
         const queryParams = new URLSearchParams(filters);
-        const response = await fetch(`${API_URL}/search/profiles?${queryParams}`, { 
+        const response = await fetch(`${API_URL}/search/profiles?${queryParams}`, {
+            headers: { 'Content-Type': 'application/json' },
             credentials: 'include' 
         });
         if (response.ok) {
@@ -196,7 +199,8 @@ function addCardEventListeners() {
 function applyFilters() {
     const ageMax = parseInt(document.getElementById('age-slider').value);
     const location = document.getElementById('location-select').value;
-    
+    let loggedInUser= JSON.parse(localStorage.getItem("loggedInUser"));
+
     filteredProfiles = profiles.filter(profile => {
         const age = calculateAge(profile.dateNaissance);
         
@@ -205,6 +209,11 @@ function applyFilters() {
         
         // Filtre de localisation
         if (location && profile.localisation !== location) return false;
+        
+        // Filtre d'ethnie
+        if ((document.getElementById('ethnie').checked) && (loggedInUser.ethnie !== profile.ethnie)) return false;
+
+        if((document.getElementById('religion').checked) && (loggedInUser.religion !== profile.religion)) return false;
         
         return true;
     });
@@ -222,6 +231,14 @@ document.getElementById('age-slider')?.addEventListener('input', (e) => {
 });
 
 document.getElementById('location-select')?.addEventListener('change', () => {
+    applyFilters();
+});
+
+document.getElementById('ethnie')?.addEventListener('change',  () => {
+    applyFilters();
+});
+
+document.getElementById('religion')?.addEventListener('change',  () => {
     applyFilters();
 });
 
@@ -263,8 +280,32 @@ async function init() {
             log('Utilisateur authentifié');
         }
 
-        // Charger les profils
-        profiles = await getSearchProfiles();
+        // Charger les profils depuis l'API externe
+        try {
+            const response = await fetch('https://nexus-api-ill3.onrender.com/api/users/');
+            const users = await response.json();
+            log('Utilisateurs chargés depuis l\'API externe:', users);
+            
+            // Mapper les données de l'API vers la structure des profils
+            profiles = users.map(user => ({
+                _id: user._id,
+                prenom: user.nom?.split(' ')[0] || 'Utilisateur',
+                dateNaissance: user.dateNaissance || '2000-01-01',
+                genre: user.genre || 'non-spécifié',
+                education: user.profession || 'Utilisateur',
+                universite: user.universite || '',
+                localisation: user.ville || user.localisation || 'Lieu inconnu',
+                typeRelation: user.relation || user.typeRelation || 'Relation sérieuse',
+                online: user.online || false,
+                bio: user.bio || '',
+                photos: user.photo ? [user.photo] : user.photos || [],
+                interets: user.interet ? [user.interet] : user.interets || [],
+                distance: user.distance
+            }));
+        } catch (err) {
+            log('Erreur lors de la récupération depuis l\'API externe:', err);
+            profiles = await getSearchProfiles();
+        }
         
         if (profiles.length === 0) {
             log('Aucun profil trouvé - chargement des profils de test');
