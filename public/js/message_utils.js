@@ -24,7 +24,7 @@ export function sendMessage(toUserId, messageText, callback) {
     };
     
     var data = { 
-        senderId: profile._id,
+        senderId: loggedInUser._id,
         receiverId: toUserId,
         content: messageText
     };
@@ -57,7 +57,7 @@ export function fetchMessages(withUserId, callback) {
     };
     
     var data = { 
-        currentUserId: profile._id, 
+        currentUserId: loggedInUser._id, 
         otherUserId: withUserId,
     };
 
@@ -89,7 +89,7 @@ export function fetchConversations(callback){
     };
     
     var data = { 
-        userId: profile._id,
+        userId: loggedInUser._id,
     };
 
     // Envoi de la requête avec les données converties en JSON
