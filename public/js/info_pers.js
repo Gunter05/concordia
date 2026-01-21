@@ -43,7 +43,7 @@ function initFields(){
     document.getElementById("relation").innerHTML = profile.relation || "Relation sérieuse";
     document.getElementById("bio").innerHTML = profile.bio || "";
     for(let interest of profile.interets){
-        document.getElementById("").innerHTML += `
+        document.getElementById("interest-tags").innerHTML += `
             <div class="tag">
                 <i class='${loisirsIcons[interest]}'></i>
                 ${interest}
@@ -52,7 +52,7 @@ function initFields(){
     
     if(profile.photos.lenght >= 2){
         for(let i=1; i < profile.photos.lenght; i++){
-            document.getElementById("").innerHTML += `
+            document.getElementById("gallery").innerHTML += `
                 <li>
                     <img src="${profile.photos[i]}" alt="Photo galerie 1"/>
                 </li>`;
