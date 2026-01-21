@@ -196,7 +196,7 @@ function displayMessages(messages) {
  */
 function createMessageElement(message) {
     const div = document.createElement('div');
-    const isSent = message.senderId === loggedInUser._id;
+    const isSent = message.sender._id === loggedInUser._id;
     div.className = `message ${isSent ? 'sent' : 'received'}`;
 
     const messageTime = formatTime(message.timestamp);
