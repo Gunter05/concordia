@@ -124,10 +124,7 @@ function createDiscussionElement(conversation, otherParticipant, isActive = fals
             </div>
             <div class="discussion-preview">${escapeHtml(lastMessage)}</div>
         </div>
-        <div class="discussion-meta">
-            <div class="discussion-time">${lastTime}</div>
-            ${unreadCount > 0 ? `<div class="unread-count">${unreadCount}</div>` : ''}
-        </div>
+        
     `;
 
     return div;
