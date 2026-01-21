@@ -1,0 +1,306 @@
+import { sendMessage, fetchMessages, fetchConversations } from './message_utils.js';
+
+// Get DOM elements
+const messageInput = document.getElementById('message-input');
+const sendBtn = document.getElementById('send-btn');
+const messagesContainer = document.getElementById('messages-container');
+const discussionList = document.getElementById('discussion-list');
+const newMatchesList = document.getElementById('new-matches-list');
+const chatUserName = document.getElementById('chat-user-name');
+const chatUserAvatar = document.getElementById('chat-user-avatar');
+const chatUserStatus = document.getElementById('chat-user-status');
+
+let currentUserId = null;
+let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+
+/**
+ * Initialize the messaging interface
+ */
+function init() {
+    if (!loggedInUser) {
+        console.error('No user logged in');
+        return;
+    }
+
+    // Load conversations on page load
+    loadConversations();
+    
+    // Add event listeners
+    sendBtn.addEventListener('click', handleSendMessage);
+    messageInput.addEventListener('keypress', (e) => {
+        if (e.key === 'Enter') {
+            handleSendMessage();
+        }
+    });
+
+    // Add click listeners to discussions
+    setupDiscussionListeners();
+}
+
+/**
+ * Load all conversations
+ */
+function loadConversations() {
+    fetchConversations((response) => {
+        try {
+            const conversations = typeof response === 'string' ? JSON.parse(response) : response;
+            console.log('Conversations loaded:', conversations);
+            
+            if (Array.isArray(conversations)) {
+                updateDiscussionsList(conversations);
+            }
+        } catch (error) {
+            console.error('Error parsing conversations:', error);
+        }
+    });
+}
+
+/**
+ * Update discussions list with fetched conversations
+ */
+function updateDiscussionsList(conversations) {
+    discussionList.innerHTML = '';
+    
+    conversations.forEach((conversation, index) => {
+        const discussionItem = createDiscussionElement(conversation, index === 0);
+        discussionList.appendChild(discussionItem);
+    });
+
+    setupDiscussionListeners();
+}
+
+/**
+ * Create a discussion item element
+ */
+function createDiscussionElement(conversation, isActive = false) {
+    const div = document.createElement('div');
+    div.className = `discussion-item ${isActive ? 'active' : ''}`;
+    div.setAttribute('data-user-id', conversation.userId);
+    
+    const lastMessage = conversation.lastMessage || 'Pas de messages';
+    const lastTime = conversation.lastMessageTime || 'Ancien';
+    const unreadCount = conversation.unreadCount || 0;
+    const isOnline = conversation.online || false;
+
+    div.innerHTML = `
+        <div class="discussion-avatar">
+            <div class="avatar-img" style="background-image: url('${conversation.userAvatar || 'https://via.placeholder.com/56'}');"></div>
+            ${isOnline ? '<div class="online-indicator"></div>' : ''}
+        </div>
+        <div class="discussion-content">
+            <div class="discussion-header">
+                <span class="discussion-name">${conversation.userName || 'Unknown'}</span>
+                ${conversation.verified ? '<span class="material-symbols-outlined verified-icon">verified</span>' : ''}
+            </div>
+            <div class="discussion-preview">${lastMessage}</div>
+        </div>
+        <div class="discussion-meta">
+            <div class="discussion-time">${lastTime}</div>
+            ${unreadCount > 0 ? `<div class="unread-count">${unreadCount}</div>` : ''}
+        </div>
+    `;
+
+    return div;
+}
+
+/**
+ * Setup click listeners for discussion items
+ */
+function setupDiscussionListeners() {
+    document.querySelectorAll('.discussion-item').forEach(item => {
+        item.addEventListener('click', (e) => {
+            const userId = item.getAttribute('data-user-id');
+            selectDiscussion(userId, item);
+        });
+    });
+}
+
+/**
+ * Select a discussion and load its messages
+ */
+function selectDiscussion(userId, discussionElement) {
+    // Update active state
+    document.querySelectorAll('.discussion-item').forEach(item => {
+        item.classList.remove('active');
+    });
+    discussionElement.classList.add('active');
+
+    currentUserId = userId;
+
+    // Update chat header with user info
+    const userName = discussionElement.querySelector('.discussion-name').textContent;
+    const userAvatar = discussionElement.querySelector('.avatar-img').style.backgroundImage;
+    chatUserName.textContent = userName;
+    chatUserAvatar.style.backgroundImage = userAvatar;
+
+    // Load messages for this conversation
+    loadMessages(userId);
+}
+
+/**
+ * Load messages for a specific user
+ */
+function loadMessages(withUserId) {
+    fetchMessages(withUserId, (response) => {
+        try {
+            const messages = typeof response === 'string' ? JSON.parse(response) : response;
+            console.log('Messages loaded:', messages);
+            
+            if (Array.isArray(messages)) {
+                displayMessages(messages);
+            }
+        } catch (error) {
+            console.error('Error parsing messages:', error);
+        }
+    });
+}
+
+/**
+ * Display messages in the chat container
+ */
+function displayMessages(messages) {
+    // Clear existing messages (keep system message if needed)
+    const messageElements = messagesContainer.querySelectorAll('.message, .system-message');
+    messageElements.forEach(msg => msg.remove());
+
+    messages.forEach(message => {
+        const messageElement = createMessageElement(message);
+        messagesContainer.appendChild(messageElement);
+    });
+
+    // Scroll to bottom
+    messagesContainer.scrollTop = messagesContainer.scrollHeight;
+}
+
+/**
+ * Create a message element
+ */
+function createMessageElement(message) {
+    const div = document.createElement('div');
+    const isSent = message.senderId === loggedInUser._id;
+    div.className = `message ${isSent ? 'sent' : 'received'}`;
+
+    const messageTime = formatTime(message.timestamp);
+    const avatarUrl = message.senderAvatar || 'https://via.placeholder.com/32';
+
+    if (isSent) {
+        div.innerHTML = `
+            <div class="message-content">
+                <div class="message-bubble">
+                    <div class="message-text">${escapeHtml(message.content)}</div>
+                </div>
+                <div class="message-time">${messageTime}</div>
+            </div>
+            <div class="message-avatar">
+                <div class="avatar-img" style="background-image: url('${avatarUrl}');"></div>
+            </div>
+        `;
+    } else {
+        div.innerHTML = `
+            <div class="message-avatar">
+                <div class="avatar-img" style="background-image: url('${avatarUrl}');"></div>
+            </div>
+            <div class="message-content">
+                <div class="message-bubble">
+                    <div class="message-text">${escapeHtml(message.content)}</div>
+                </div>
+                <div class="message-time">${messageTime}</div>
+            </div>
+        `;
+    }
+
+    return div;
+}
+
+/**
+ * Handle sending a message
+ */
+function handleSendMessage() {
+    const messageText = messageInput.value.trim();
+
+    if (!messageText || !currentUserId) {
+        console.warn('No message text or user selected');
+        return;
+    }
+
+    // Send the message using the utility function
+    sendMessage(currentUserId, messageText, (response) => {
+        try {
+            const result = typeof response === 'string' ? JSON.parse(response) : response;
+            console.log('Message sent:', result);
+
+            // Add the message to the UI immediately
+            const newMessage = {
+                senderId: loggedInUser._id,
+                content: messageText,
+                timestamp: new Date(),
+                senderAvatar: loggedInUser.photo
+            };
+
+            const messageElement = createMessageElement(newMessage);
+            messagesContainer.appendChild(messageElement);
+
+            // Scroll to bottom
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Clear the input
+            messageInput.value = '';
+            messageInput.focus();
+        } catch (error) {
+            console.error('Error sending message:', error);
+        }
+    });
+}
+
+/**
+ * Format timestamp to readable time
+ */
+function formatTime(timestamp) {
+    if (!timestamp) return '';
+    
+    const date = new Date(timestamp);
+    const now = new Date();
+    const diffMs = now - date;
+    const diffMins = Math.floor(diffMs / 60000);
+    const diffHours = Math.floor(diffMs / 3600000);
+    const diffDays = Math.floor(diffMs / 86400000);
+
+    if (diffMins < 1) return 'À l\'instant';
+    if (diffMins < 60) return `${diffMins}m`;
+    if (diffHours < 24) return `${diffHours}h`;
+    if (diffDays === 1) return 'Hier';
+    if (diffDays < 7) return `${diffDays}j`;
+    
+    return date.toLocaleDateString('fr-FR');
+}
+
+/**
+ * Escape HTML to prevent XSS
+ */
+function escapeHtml(text) {
+    const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+    };
+    return text.replace(/[&<>"']/g, m => map[m]);
+}
+
+/**
+ * Update online status display
+ */
+function updateOnlineStatus(isOnline) {
+    const status = isOnline ? 'En ligne' : 'Hors ligne';
+    chatUserStatus.textContent = status;
+}
+
+// Initialize when DOM is ready
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+} else {
+    init();
+}
+
+console.log('[message2.js] Script loaded successfully');
