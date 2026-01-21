@@ -77,7 +77,6 @@ function initFields(){
     document.getElementById("profile-age").innerHTML = profile.age || "";
     document.getElementById("email").innerHTML = profile.email || "eee@ee.com";
     document.getElementById("bio").innerHTML = profile.bio || "";
-    document.getElementById("interest-tags").innerHTML = "";
 
     for(let interest of profile.interets){
         document.getElementById("interest-tags").innerHTML += `
