@@ -78,22 +78,4 @@ function initFields(){
     document.getElementById("email").innerHTML = profile.email || "eee@ee.com";
     document.getElementById("bio").innerHTML = profile.bio || "";
 
-    for(let interest of profile.interets){
-        document.getElementById("interest-tags").innerHTML += `
-            <div class="tag">
-                <i class='${loisirsIcons[interest]}'></i>
-                ${interest}
-            </div>`;
-    }
-    if(profile.photos.lenght >= 2){
-        for(let i=1; i < profile.photos.lenght; i++){
-            document.getElementById("gallery").innerHTML += `
-                <li>
-                    <img src="${profile.photos[i]}" alt="Photo galerie 1"/>
-                </li>`;
-        }
-    }
-
-    
-
 }
