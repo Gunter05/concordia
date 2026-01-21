@@ -34,6 +34,41 @@ const loisirsIcons = {
 
 document.addEventListener("DOMContentLoaded", function(){
     initFields();
+
+    document.getElementById("info-update-submit").addEventListener("click", function(){
+        var xhr = new XMLHttpRequest();
+
+        xhr.open("PUT", `https://nexus-api-ill3.onrender.com/api/users/${profile._id}`, true);
+
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.setRequestHeader('Authorization', `Bearer ${profile.token}`);
+        xhr.withCredentials= true;
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) { // 4 = DONE
+                if (xhr.status === 200) {
+                    // Succès : traiter la réponse
+                    console.log("Réponse du serveur :", xhr.responseText);
+                    
+                    console.log("responsetext: " + xhr.responseText);
+                    console.log("response: " + xhr.response);
+                    localStorage.setItem("loggedInUser", xhr.response);
+                    window.location.href= "settings.html";
+                } else {
+                    // Erreur
+                    console.error("Erreur :", xhr.status, xhr.statusText);
+                }
+            }
+        };
+        
+        var data = {
+            "nom" : document.getElementById("full-name").value,
+            "bio": document.getElementById("bio").value,
+            "universite": document.getElementById("ecoles").value,
+        };
+
+        // Envoi de la requête avec les données converties en JSON
+        xhr.send(JSON.stringify(data));
+    });
 });
 
 function initFields(){
@@ -60,5 +95,6 @@ function initFields(){
         }
     }
 
+    
 
 }

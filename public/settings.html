@@ -247,7 +247,14 @@
                             <!-- Groupe de formulaire -->
                             <label for="university">Université</label>
                             <!-- Étiquette du champ -->
-                            <input type="text" id="university" name="university" placeholder="Ex: Université Cheikh Anta Diop">
+                            <select name="ecoles" id="ecoles">
+                                <option value="saint jean ingenieur">Saint Jean Ingénieur</option>
+                                <option value="saint jean school of management">Saint Jean School of Management</option>
+                                <option value="prepavogt">PrepaVogt</option>
+                                <option value="cpge">CPGE</option>
+                                <option value="prepa saint jean">Prepa Saint Jean</option>
+                                <option value="saint jean ingenieur etok koss">Saint Jean Ingenieur - Etok Koss</option>
+                            </select>
                             <!-- Input texte pour université (rempli dynamiquement) -->
                         </div>
                     </div>
@@ -276,7 +283,7 @@
                         <!-- Buttons save/cancel -->
                         <button type="reset" class="btn-secondary">Annuler</button>
                         <!-- Bouton annuler (réinitialise le formulaire) -->
-                        <button type="submit" class="btn-primary">Enregistrer les modifications</button>
+                        <button type="submit" class="btn-primary" id="info-update-submit">Enregistrer les modifications</button>
                         <!-- Bouton submit (envoie les données) -->
                     </div>
                 </form>
