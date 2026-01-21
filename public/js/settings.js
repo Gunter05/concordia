@@ -54,7 +54,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     // window.location.href= "settings.html";
                 } else {
                     // Erreur
-                    console.error("Erreur :", xhr.status, xhr.statusText);
+                    console.error("Erreur :", xhr.status, xhr.statusText, xhr.responseText,xhr.response);
                 }
             }
         };
