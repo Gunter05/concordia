@@ -1,4 +1,4 @@
-let profile= JSON.parse(localStorage.getItem("profile"));
+let profile= JSON.parse(localStorage.getItem("loggedInUser"));
 const loisirsIcons = {
   sport: "fa-solid fa-dumbbell",
   football: "fa-solid fa-futbol",
@@ -34,6 +34,40 @@ const loisirsIcons = {
 
 document.addEventListener("DOMContentLoaded", function(){
     initFields();
+
+    document.getElementById("info-update-submit").addEventListener("click", function(){
+        var xhr = new XMLHttpRequest();
+        console.log("profile id: " + profile._id);
+        xhr.open("PUT", `https://nexus-api-ill3.onrender.com/api/users/${profile._id}`, true);
+
+        xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+        xhr.setRequestHeader('Authorization', `Bearer ${profile.token}`);
+        xhr.withCredentials= true;
+        xhr.onreadystatechange = function() {
+            if (xhr.readyState === 4) { // 4 = DONE
+                if (xhr.status === 200) {
+                    // Succès : traiter la réponse
+                    console.log("Réponse du serveur :", xhr.responseText);
+                    console.log("responsetext: " + xhr.responseText);
+                    console.log("response: " + xhr.response);
+                    localStorage.setItem("loggedInUser", xhr.response);
+                    window.location.href= "settings.html";
+                } else {
+                    // Erreur
+                    console.error("Erreur :", xhr.status, xhr.statusText, xhr.responseText,xhr.response);
+                }
+            }
+        };
+        
+        var data = {
+            "nom" : document.getElementById("full-name").value,
+            "bio": document.getElementById("bio").value,
+            "universite": document.getElementById("ecoles").value,
+        };
+
+        // Envoi de la requête avec les données converties en JSON
+        xhr.send(JSON.stringify(data));
+    });
 });
 
 function initFields(){
@@ -42,23 +76,5 @@ function initFields(){
     document.getElementById("profile-age").innerHTML = profile.age || "";
     document.getElementById("email").innerHTML = profile.email || "eee@ee.com";
     document.getElementById("bio").innerHTML = profile.bio || "";
-    document.getElementById("interest-tags").innerHTML = "";
-
-    for(let interest of profile.interets){
-        document.getElementById("interest-tags").innerHTML += `
-            <div class="tag">
-                <i class='${loisirsIcons[interest]}'></i>
-                ${interest}
-            </div>`;
-    }
-    if(profile.photos.lenght >= 2){
-        for(let i=1; i < profile.photos.lenght; i++){
-            document.getElementById("gallery").innerHTML += `
-                <li>
-                    <img src="${profile.photos[i]}" alt="Photo galerie 1"/>
-                </li>`;
-        }
-    }
-
 
 }
