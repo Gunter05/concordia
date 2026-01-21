@@ -5,7 +5,7 @@
     left: 0px;
     position: fixed;
     color: white;
-    background-image: url("../images/auth_bg.jpg");
+    background-image: url("../images/signin_background.jpg");
     background-size: cover;
     transition: 1s;
 }
@@ -17,7 +17,7 @@
     left: -57%;
     position: fixed;
     color: white;
-    background-image: url("../images/auth_bg.jpg");
+    background-image: url("../images/signin_background.jpg");
     background-size: cover;
     transition: 1s;
 }
@@ -245,7 +245,7 @@ a{
     top: 0px;
     width: 57%;
     height: 100%;
-    background-image: url("../images/signup_bg.jpg");
+    background-image: url("../images/signup_background.jpg");
     background-size: cover;
     background-blend-mode: multiply;
     display: flex;
