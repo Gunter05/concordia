@@ -39,8 +39,8 @@ document.addEventListener("DOMContentLoaded", function(){
 function initFields(){
     document.getElementById("nom").innerHTML = profile.nom;
     document.getElementById("name-title").innerHTML = profile.nom;
-    document.getElementById("location_user").innerHTML = profile.ville || "";
-    document.getElementById("relation").innerHTML = profile.relation || "Relation sérieuse";
+    document.getElementById("location_user").innerHTML = profile.universite || "";
+    document.getElementById("relation").innerHTML = profile.intention || "Relation sérieuse";
     document.getElementById("bio").innerHTML = profile.bio || "";
     document.getElementById("interest-tags").innerHTML = "";
 
