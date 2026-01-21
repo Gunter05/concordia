@@ -51,7 +51,7 @@ document.addEventListener("DOMContentLoaded", function(){
                     console.log("responsetext: " + xhr.responseText);
                     console.log("response: " + xhr.response);
                     localStorage.setItem("loggedInUser", xhr.response);
-                    // window.location.href= "settings.html";
+                    window.location.href= "settings.html";
                 } else {
                     // Erreur
                     console.error("Erreur :", xhr.status, xhr.statusText, xhr.responseText,xhr.response);
