@@ -268,7 +268,7 @@ function handleSendMessage() {
 
             // Add the message to the UI immediately
             const newMessage = {
-                senderId: loggedInUser._id,
+                sender: { _id: loggedInUser._id },
                 content: messageText,
                 timestamp: new Date(),
                 senderAvatar: loggedInUser.photo
