@@ -42,7 +42,7 @@ function initFields(){
     document.getElementById("location_user").innerHTML = profile.ville || "";
     document.getElementById("relation").innerHTML = profile.relation || "Relation sérieuse";
     document.getElementById("bio").innerHTML = profile.bio || "";
-    for(let interest of profile.interet){
+    for(let interest of profile.interets){
         document.getElementById("").innerHTML += `
             <div class="tag">
                 <i class='${loisirsIcons[interest]}'></i>
@@ -59,5 +59,5 @@ function initFields(){
         }
     }
 
-    
+
 }
