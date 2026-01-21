@@ -42,6 +42,8 @@ function initFields(){
     document.getElementById("location_user").innerHTML = profile.ville || "";
     document.getElementById("relation").innerHTML = profile.relation || "Relation sérieuse";
     document.getElementById("bio").innerHTML = profile.bio || "";
+    document.getElementById("interest-tags").innerHTML = "";
+
     for(let interest of profile.interets){
         document.getElementById("interest-tags").innerHTML += `
             <div class="tag">
@@ -49,7 +51,6 @@ function initFields(){
                 ${interest}
             </div>`;
     }
-    document.getElementById("gallery").innerHTML = "";
     if(profile.photos.lenght >= 2){
         for(let i=1; i < profile.photos.lenght; i++){
             document.getElementById("gallery").innerHTML += `
