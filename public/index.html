@@ -2,193 +2,744 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <!DOCTYPE html>
-    <html lang="fr">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Nexus - Rencontres Étudiantes</title>
-        <link rel="stylesheet" href="css/Global.css">
-        <link rel="stylesheet" href="css/app.css">
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
-        <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
-        <meta name="description" content="Nexus - Application de rencontre moderne pour étudiants. Trouvez l'amour, l'amitié et plus encore.">
-        <style>
-            body {
-                margin: 0;
-                font-family: 'Inter', Arial, sans-serif;
-                background: linear-gradient(120deg, #ffe0ec 0%, #f7f0ff 100%);
-                min-height: 100vh;
-                color: #2d1e2f;
-                overflow-x: hidden;
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Concordia - Rencontres Étudiantes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #8B5CF6;
+            --primary-dark: #7C3AED;
+            --primary-light: #A78BFA;
+            --primary-soft: #F5F3FF;
+            --secondary: #EC4899;
+            --dark: #1F2937;
+            --light: #F9FAFB;
+            --gray: #6B7280;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --shadow: 0 10px 25px rgba(139, 92, 246, 0.1);
+            --shadow-lg: 0 20px 40px rgba(139, 92, 246, 0.15);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #F9FAFB 0%, #F5F3FF 100%);
+            color: var(--dark);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Header */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            padding: 1.5rem 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            box-shadow: 0 2px 20px rgba(139, 92, 246, 0.08);
+        }
+
+        .nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .logo:hover {
+            transform: translateY(-2px);
+        }
+
+        .logo-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.25rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            align-items: center;
+        }
+
+        .nav-link {
+            color: var(--dark);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: var(--transition);
+        }
+
+        .nav-link:hover {
+            color: var(--primary);
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--primary), var(--secondary));
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 8rem 0 4rem;
+            position: relative;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            animation: fadeUp 1s ease-out;
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .hero-desc {
+            font-size: 1.125rem;
+            color: var(--gray);
+            margin-bottom: 2.5rem;
+            max-width: 500px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 3rem;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            border: none;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            box-shadow: var(--shadow);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: var(--primary);
+            border: 2px solid var(--primary-light);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .hero-image {
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50%;
+            height: 70%;
+            background: linear-gradient(135deg, var(--primary-soft), white);
+            border-radius: 40px 0 0 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow-lg);
+            overflow: hidden;
+        }
+
+        .floating-card {
+            position: absolute;
+            background: white;
+            border-radius: 20px;
+            padding: 1.5rem;
+            box-shadow: var(--shadow);
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .card-1 {
+            top: 20%;
+            right: 20%;
+            animation-delay: 0s;
+        }
+
+        .card-2 {
+            bottom: 20%;
+            right: 30%;
+            animation-delay: 2s;
+        }
+
+        .card-3 {
+            top: 50%;
+            right: 10%;
+            animation-delay: 4s;
+        }
+
+        /* Features Section */
+        .features {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            margin-bottom: 4rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--light);
+            padding: 2.5rem 2rem;
+            border-radius: 20px;
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(180deg, var(--primary), var(--secondary));
+        }
+
+        .feature-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-soft), white);
+            border-radius: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.5rem;
+            font-size: 1.75rem;
+            color: var(--primary);
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--dark);
+        }
+
+        .feature-desc {
+            color: var(--gray);
+        }
+
+        /* Stats Section */
+        .stats {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--dark);
+            color: white;
+            padding: 4rem 0 2rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            margin-bottom: 1rem;
+        }
+
+        .footer-desc {
+            color: #9CA3AF;
+            margin-bottom: 1.5rem;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .social-link {
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .social-link:hover {
+            background: var(--primary);
+            transform: translateY(-3px);
+        }
+
+        .footer-heading {
+            font-size: 1.125rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.75rem;
+        }
+
+        .footer-links a {
+            color: #9CA3AF;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-light);
+            padding-left: 0.5rem;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: #9CA3AF;
+            font-size: 0.875rem;
+        }
+
+        /* Animations */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .hero-image {
+                display: none;
+            }
+            
             .hero {
-                display: flex;
+                text-align: center;
+                padding: 6rem 0 4rem;
+            }
+            
+            .hero-content {
+                margin: 0 auto;
+                text-align: center;
+            }
+            
+            .hero-buttons {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+            
+            .hero-buttons {
                 flex-direction: column;
                 align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 300px;
                 justify-content: center;
-                min-height: 90vh;
-                text-align: center;
-                position: relative;
             }
-            .hero-logo {
-                width: 90px;
-                height: 90px;
-                background: linear-gradient(135deg, #ff5e8e 60%, #a259ff 100%);
-                border-radius: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                margin-bottom: 1.5rem;
-                box-shadow: 0 8px 32px rgba(255,94,142,0.15);
-                animation: pulse 2.5s infinite;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
             }
-            .hero-logo i {
-                font-size: 3rem;
-                color: #fff;
-            }
-            @keyframes pulse {
-                0% { box-shadow: 0 0 0 0 rgba(255,94,142,0.25); }
-                70% { box-shadow: 0 0 0 24px rgba(255,94,142,0); }
-                100% { box-shadow: 0 0 0 0 rgba(255,94,142,0); }
-            }
+            
             .hero-title {
-                font-size: 2.8rem;
-                font-weight: 700;
-                letter-spacing: -1px;
-                margin-bottom: 1rem;
-                color: #a259ff;
-                text-shadow: 0 2px 8px #fff3;
+                font-size: 2rem;
             }
-            .hero-desc {
-                font-size: 1.25rem;
-                color: #6d4c6d;
-                margin-bottom: 2.5rem;
-                max-width: 480px;
-                line-height: 1.6;
-            }
-            .cta-btns {
-                display: flex;
-                gap: 1.2rem;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            .cta-btn {
-                background: linear-gradient(90deg, #ff5e8e 60%, #a259ff 100%);
-                color: #fff;
-                border: none;
-                border-radius: 32px;
-                padding: 0.9rem 2.2rem;
-                font-size: 1.1rem;
-                font-weight: 700;
-                cursor: pointer;
-                box-shadow: 0 4px 16px rgba(162,89,255,0.10);
-                transition: transform 0.15s, box-shadow 0.15s;
-                outline: none;
-            }
-            .cta-btn.secondary {
-                background: #fff;
-                color: #a259ff;
-                border: 2px solid #a259ff;
-                box-shadow: none;
-            }
-            .cta-btn:hover {
-                transform: translateY(-2px) scale(1.04);
-                box-shadow: 0 8px 32px rgba(255,94,142,0.18);
-            }
-            .features {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 2.5rem;
-                margin: 4rem 0 2rem 0;
-            }
+            
             .feature-card {
-                background: #fff;
-                border-radius: 24px;
-                box-shadow: 0 2px 16px rgba(162,89,255,0.07);
-                padding: 2rem 1.5rem 1.5rem 1.5rem;
-                max-width: 320px;
-                min-width: 240px;
-                text-align: center;
-                transition: box-shadow 0.2s, transform 0.2s;
+                padding: 2rem 1.5rem;
             }
-            .feature-card:hover {
-                box-shadow: 0 8px 32px rgba(255,94,142,0.13);
-                transform: translateY(-4px) scale(1.03);
-            }
-            .feature-card i {
-                font-size: 2.2rem;
-                color: #ff5e8e;
-                margin-bottom: 0.7rem;
-            }
-            .feature-title {
-                font-size: 1.18rem;
-                font-weight: 700;
-                color: #a259ff;
-                margin-bottom: 0.5rem;
-            }
-            .feature-desc {
-                color: #6d4c6d;
-                font-size: 1rem;
-                line-height: 1.5;
-            }
-            .footer {
-                text-align: center;
-                color: #a259ff;
-                font-size: 1rem;
-                padding: 2.5rem 0 1.2rem 0;
-                opacity: 0.85;
-                letter-spacing: 0.5px;
-            }
-            @media (max-width: 700px) {
-                .hero-title { font-size: 2rem; }
-                .hero-desc { font-size: 1.05rem; }
-                .features { flex-direction: column; gap: 1.5rem; }
-                .feature-card { max-width: 95vw; }
-            }
-        </style>
-    </head>
-    <body>
-        <main>
-            <section class="hero">
-                <div class="hero-logo">
-                    <img src="./images/logo_concordia.png" alt="logo concordia" class='bx bxs-heart'/>
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="#" class="logo">
+                    <div class="logo-icon">
+                        <i class='bx bxs-heart'></i>
+                    </div>
+                    Concordia
+                </a>
+                <div class="nav-links">
+                    <a href="#features" class="nav-link">Fonctionnalités</a>
+                    <a href="#stats" class="nav-link">Communauté</a>
+                    <a href="login.html" class="nav-link">Connexion</a>
+                    <a href="inscription.html" class="btn btn-primary">S'inscrire</a>
                 </div>
-                <h1 class="hero-title">Concordia - Rencontres Étudiantes</h1>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    Trouvez votre moitié sur les campus
+                </h1>
                 <p class="hero-desc">
                     Bienvenue sur Concordia, la plateforme moderne où l'amour, l'amitié et la complicité prennent vie sur les campus. Découvrez, connectez-vous et vivez des histoires authentiques avec des étudiants qui partagent vos valeurs.
                 </p>
-                <div class="cta-btns">
-                    <a href="inscription.html" class="cta-btn">Commencer l'aventure</a>
-                    <a href="login.html" class="cta-btn secondary">Se connecter</a>
+                <div class="hero-buttons">
+                    <a href="inscription.html" class="btn btn-primary">
+                        <i class='bx bxs-rocket'></i>
+                        Commencer l'aventure
+                    </a>
+                    <a href="#features" class="btn btn-secondary">
+                        <i class='bx bxs-info-circle'></i>
+                        En savoir plus
+                    </a>
                 </div>
-            </section>
-            <section class="features">
+            </div>
+            <div class="hero-image">
+                <div class="floating-card card-1">
+                    <i class='bx bxs-user-check' style="color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <div style="font-weight: 600; color: var(--dark);">Match trouvé !</div>
+                    <div style="font-size: 0.875rem; color: var(--gray);">Vous avez 95% d'affinités</div>
+                </div>
+                <div class="floating-card card-2">
+                    <i class='bx bxs-message-rounded-dots' style="color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <div style="font-weight: 600; color: var(--dark);">Nouveau message</div>
+                    <div style="font-size: 0.875rem; color: var(--gray);">Connectez-vous pour lire</div>
+                </div>
+                <div class="floating-card card-3">
+                    <i class='bx bxs-party' style="color: var(--primary); font-size: 1.5rem; margin-bottom: 0.5rem;"></i>
+                    <div style="font-weight: 600; color: var(--dark);">Événement ce soir</div>
+                    <div style="font-size: 0.875rem; color: var(--gray);">Soirée rencontre campus</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Pourquoi choisir Concordia</h2>
+            <p class="section-subtitle">Une expérience de rencontre étudiante pensée pour vous, avec des fonctionnalités innovantes et sécurisées.</p>
+            
+            <div class="features-grid">
                 <div class="feature-card">
-                    <i class='bx bxs-user-check'></i>
-                    <div class="feature-title">Profils vérifiés</div>
-                    <div class="feature-desc">Chaque membre est authentifié pour garantir des rencontres sincères et sécurisées.</div>
+                    <div class="feature-icon">
+                        <i class='bx bxs-user-check'></i>
+                    </div>
+                    <h3 class="feature-title">Profils vérifiés</h3>
+                    <p class="feature-desc">Chaque membre est authentifié via son email universitaire pour garantir des rencontres sincères et sécurisées.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <i class='bx bxs-message-rounded-dots'></i>
-                    <div class="feature-title">Discussions instantanées</div>
-                    <div class="feature-desc">Échangez en toute fluidité grâce à une messagerie moderne et intuitive.</div>
+                    <div class="feature-icon">
+                        <i class='bx bxs-message-rounded-dots'></i>
+                    </div>
+                    <h3 class="feature-title">Discussions instantanées</h3>
+                    <p class="feature-desc">Échangez en toute fluidité grâce à une messagerie moderne, intuitive et enrichie de photos et GIFs.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <i class='bx bxs-heart-circle'></i>
-                    <div class="feature-title">Matchs sur mesure</div>
-                    <div class="feature-desc">Des suggestions personnalisées selon vos affinités, passions et valeurs.</div>
+                    <div class="feature-icon">
+                        <i class='bx bxs-heart-circle'></i>
+                    </div>
+                    <h3 class="feature-title">Matchs intelligents</h3>
+                    <p class="feature-desc">Notre algorithme vous propose des profils compatibles selon vos centres d'intérêt et affinités.</p>
                 </div>
+                
                 <div class="feature-card">
-                    <i class='bx bxs-party'></i>
-                    <div class="feature-title">Événements étudiants</div>
-                    <div class="feature-desc">Participez à des activités et soirées pour créer des souvenirs inoubliables.</div>
+                    <div class="feature-icon">
+                        <i class='bx bxs-party'></i>
+                    </div>
+                    <h3 class="feature-title">Événements exclusifs</h3>
+                    <p class="feature-desc">Participez à des activités et soirées étudiantes pour créer des souvenirs inoubliables.</p>
                 </div>
-            </section>
-        </main>
-        <footer class="footer">
-            <span>&hearts; Nexus &copy; 2026 — Trouvez votre moitié, vivez l'expérience étudiante autrement.</span>
-        </footer>
-    </body>
-    </html>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section id="stats" class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">10K+</div>
+                    <div class="stat-label">Étudiants inscrits</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">De satisfaction</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Couples formés</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">50+</div>
+                    <div class="stat-label">Campus partenaires</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <a href="#" class="footer-logo">
+                        <div class="logo-icon">
+                            <i class='bx bxs-heart'></i>
+                        </div>
+                        Concordia
+                    </a>
+                    <p class="footer-desc">
+                        La plateforme de rencontre étudiante moderne, sécurisée et authentique. Rejoignez notre communauté dès aujourd'hui.
+                    </p>
+                    <div class="social-links">
+                        <a href="#" class="social-link"><i class='bx bxl-instagram'></i></a>
+                        <a href="#" class="social-link"><i class='bx bxl-facebook'></i></a>
+                        <a href="#" class="social-link"><i class='bx bxl-tiktok'></i></a>
+                        <a href="#" class="social-link"><i class='bx bxl-twitter'></i></a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Navigation</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Accueil</a></li>
+                        <li><a href="#features">Fonctionnalités</a></li>
+                        <li><a href="#stats">Communauté</a></li>
+                        <li><a href="inscription.html">S'inscrire</a></li>
+                        <li><a href="login.html">Connexion</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Légal</h4>
+                    <ul class="footer-links">
+                        <li><a href="#">Conditions d'utilisation</a></li>
+                        <li><a href="#">Politique de confidentialité</a></li>
+                        <li><a href="#">Mentions légales</a></li>
+                        <li><a href="#">Cookies</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h4 class="footer-heading">Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:contact@concordia.fr">contact@concordia.fr</a></li>
+                        <li><a href="#">Support technique</a></li>
+                        <li><a href="#">Presse</a></li>
+                        <li><a href="#">Partenariats</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&hearts; Concordia &copy; 2026 — Trouvez votre moitié, vivez l'expérience étudiante autrement.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Animation au scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = '1';
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, observerOptions);
+
+            // Observer les cartes de fonctionnalités
+            document.querySelectorAll('.feature-card').forEach(card => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(card);
+            });
+
+            // Observer les stats
+            document.querySelectorAll('.stat').forEach(stat => {
+                stat.style.opacity = '0';
+                stat.style.transform = 'translateY(20px)';
+                stat.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(stat);
+            });
+
+            // Effet de flottement pour les cartes du hero
+            const floatingCards = document.querySelectorAll('.floating-card');
+            floatingCards.forEach((card, index) => {
+                card.style.animationDelay = `${index * 2}s`;
+            });
+        });
+    </script>
+</body>
+</html>
