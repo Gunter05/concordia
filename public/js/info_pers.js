@@ -49,7 +49,7 @@ function initFields(){
                 ${interest}
             </div>`;
     }
-    
+    document.getElementById("gallery").innerHTML = "";
     if(profile.photos.lenght >= 2){
         for(let i=1; i < profile.photos.lenght; i++){
             document.getElementById("gallery").innerHTML += `
