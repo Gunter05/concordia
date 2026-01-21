@@ -107,9 +107,18 @@ function renderProfiles() {
     emptyState.style.display = 'none';
     
     grid.innerHTML = filteredProfiles.map(profile => createProfileCard(profile)).join('');
+    
     for (const profile of filteredProfiles) {
         document.getElementById(`like-${profile._id}`).addEventListener('click', async (e) => {
             sendMessage(profile._id, "Salut! J'ai aimé ton profil 😊");
+        });
+    }
+    
+    for (const profile of filteredProfiles) {
+        document.getElementById(`box-${profile._id}`).addEventListener('click', async (e) => {
+            localStorage.setItem("profile", JSON.stringify(profile));
+            window.location.href= "Info_pers.html";
+            
         });
     }
     // Ajouter les event listeners
@@ -133,7 +142,7 @@ function createProfileCard(profile) {
     const onlineIndicator = profile.online ? `<span class="profile-badge badge-online"><span class="status-dot"></span> EN LIGNE</span>` : '';
     
     return `
-        <div class="profile-card" data-user-id="${profile._id}">
+        <div class="profile-card" data-user-id="${profile._id}" id="box-${profile._id}">
             <div class="profile-image">
                 <img src="${avatar}" alt="${profile.prenom}" onerror="this.src='https://via.placeholder.com/300x350/7c3aed/ffffff?text=${profile.prenom}'">
                 <div class="profile-badges">

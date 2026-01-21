@@ -201,7 +201,7 @@ function createMessageElement(message) {
 
     const messageTime = formatTime(message.timestamp);
     const avatarUrl = message.senderAvatar || 'https://via.placeholder.com/32';
-
+    console.log("is sent: " + isSent);
     if (isSent) {
         div.innerHTML = `
             <div class="message-content">

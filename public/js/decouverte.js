@@ -37,11 +37,14 @@ document.addEventListener("DOMContentLoaded", function() {
                     localStorage.setItem("profile", JSON.stringify(user));
                     window.location.href= "Info_pers.html";
                 });
+                document.getElementById(`${user._id}`).style.transform = `translateX(2px) translateY(2px) )`;
+
             });
         })
         .catch(error => {
             console.error("Erreur lors du chargement des utilisateurs :", error);
         });
+
 });
 
 function rotate(direction) {
