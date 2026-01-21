@@ -1,3 +1,4 @@
+import { sendMessage, fetchMessages, fetchConversations } from './message_utils.js';
 // Variables globales
 let profiles = []; // Array to hold all user profiles
 let filteredProfiles = [];
@@ -106,7 +107,11 @@ function renderProfiles() {
     emptyState.style.display = 'none';
     
     grid.innerHTML = filteredProfiles.map(profile => createProfileCard(profile)).join('');
-    
+    for (const profile of filteredProfiles) {
+        document.getElementById(`like-${profile._id}`).addEventListener('click', async (e) => {
+            sendMessage(profile._id, "Salut! J'ai aimé ton profil 😊");
+        });
+    }
     // Ajouter les event listeners
     addCardEventListeners();
 }
@@ -153,7 +158,7 @@ function createProfileCard(profile) {
                     <button class="btn-card-action btn-pass" data-action="pass" data-user-id="${profile._id}">
                         <i class='bx bx-x'></i> Passer
                     </button>
-                    <button class="btn-card-action btn-like" data-action="like" data-user-id="${profile._id}">
+                    <button class="btn-card-action btn-like" data-action="like" data-user-id="${profile._id}" id="like-${profile._id}">
                         <i class='bx bxs-heart'></i> Aimer
                     </button>
                 </div>
