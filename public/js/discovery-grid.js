@@ -199,7 +199,8 @@ function addCardEventListeners() {
 function applyFilters() {
     const ageMax = parseInt(document.getElementById('age-slider').value);
     const location = document.getElementById('location-select').value;
-    
+    let loggedInUser= JSON.parse(localStorage.getItem("loggedInUser"));
+
     filteredProfiles = profiles.filter(profile => {
         const age = calculateAge(profile.dateNaissance);
         
@@ -208,6 +209,11 @@ function applyFilters() {
         
         // Filtre de localisation
         if (location && profile.localisation !== location) return false;
+        
+        // Filtre d'ethnie
+        if ((document.getElementById('ethnie').checked) && (loggedInUser.ethnie !== profile.ethnie)) return false;
+
+        if((document.getElementById('religion').checked) && (loggedInUser.religion !== profile.religion)) return false;
         
         return true;
     });
@@ -225,6 +231,14 @@ document.getElementById('age-slider')?.addEventListener('input', (e) => {
 });
 
 document.getElementById('location-select')?.addEventListener('change', () => {
+    applyFilters();
+});
+
+document.getElementById('ethnie')?.addEventListener('change',  () => {
+    applyFilters();
+});
+
+document.getElementById('religion')?.addEventListener('change',  () => {
     applyFilters();
 });
 
