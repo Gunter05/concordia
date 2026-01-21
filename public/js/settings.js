@@ -1,4 +1,4 @@
-let profile= JSON.parse(localStorage.getItem("profile"));
+let profile= JSON.parse(localStorage.getItem("loggedInUser"));
 const loisirsIcons = {
   sport: "fa-solid fa-dumbbell",
   football: "fa-solid fa-futbol",
