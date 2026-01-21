@@ -22,6 +22,8 @@ function init() {
         return;
     }
 
+    console.log('[message2.js] Initializing - Logged in user:', loggedInUser._id);
+
     // Load conversations on page load
     loadConversations();
     
@@ -32,25 +34,35 @@ function init() {
             handleSendMessage();
         }
     });
-
-    // Add click listeners to discussions
-    setupDiscussionListeners();
 }
 
 /**
  * Load all conversations
  */
 function loadConversations() {
+    console.log('[message2.js] Starting to fetch conversations for user:', loggedInUser._id);
+    
     fetchConversations((response) => {
         try {
-            const conversations = typeof response === 'string' ? JSON.parse(response) : response;
-            console.log('Conversations loaded:', conversations);
+            console.log('[message2.js] Raw response from fetchConversations:', response);
+            
+            let conversations = response;
+            
+            // Parse if response is a string
+            if (typeof response === 'string') {
+                conversations = JSON.parse(response);
+            }
+            
+            console.log('[message2.js] Parsed conversations:', conversations);
             
             if (Array.isArray(conversations)) {
+                console.log(`[message2.js] Found ${conversations.length} conversations`);
                 updateDiscussionsList(conversations);
+            } else {
+                console.warn('[message2.js] Response is not an array:', conversations);
             }
         } catch (error) {
-            console.error('Error parsing conversations:', error);
+            console.error('[message2.js] Error parsing conversations:', error);
         }
     });
 }
