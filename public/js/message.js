@@ -18,11 +18,20 @@ const error = (msg, err = null) => {
 
 // ============= FONCTIONS D'API =============
 
+const getAuthHeaders = () => {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    const token = loggedInUser?.token;
+    return token ? { 'Authorization': `Bearer ${token}` } : {};
+};
+
 // Récupérer les infos de l'utilisateur actuel
 async function getCurrentUser() {
     try {
         log('Récupération de l\'utilisateur connecté...');
         const response = await fetch(`${API_URL}/auth/me`, {
+            headers: {
+                ...getAuthHeaders()
+            },
             credentials: 'include'
         });
         if (response.ok) {
@@ -43,7 +52,10 @@ async function getCurrentUser() {
 async function getMatches() {
     try {
         log('Récupération des matches...');
-        const response = await fetch(`${API_URL}/match/matches`, {
+        const response = await fetch(`${API_URL}/matches`, {
+            headers: {
+                ...getAuthHeaders()
+            },
             credentials: 'include'
         });
         if (response.ok) {
@@ -64,6 +76,9 @@ async function getConversations() {
     try {
         log('Récupération des conversations...');
         const response = await fetch(`${API_URL}/chat/conversations`, {
+            headers: {
+                ...getAuthHeaders()
+            },
             credentials: 'include'
         });
         if (response.ok) {
@@ -84,6 +99,9 @@ async function getConversation(userId) {
     try {
         log('Récupération de la conversation avec:', userId);
         const response = await fetch(`${API_URL}/chat/conversation/${userId}`, {
+            headers: {
+                ...getAuthHeaders()
+            },
             credentials: 'include'
         });
         if (response.ok) {
@@ -106,7 +124,8 @@ async function sendMessage(receiverId, content) {
         const response = await fetch(`${API_URL}/chat/send`, {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                ...getAuthHeaders()
             },
             credentials: 'include',
             body: JSON.stringify({
@@ -132,6 +151,9 @@ async function getUserInfo(userId) {
     try {
         log('Récupération des infos utilisateur:', userId);
         const response = await fetch(`${API_URL}/user/${userId}`, {
+            headers: {
+                ...getAuthHeaders()
+            },
             credentials: 'include'
         });
         if (response.ok) {

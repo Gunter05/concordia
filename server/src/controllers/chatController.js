@@ -7,7 +7,8 @@ import User from '../models/User.js';
 // @route   POST /api/chat/send
 const sendMessage = async (req, res) => {
     try {
-        const { senderId, receiverId, content } = req.body;
+        const senderId = req.user && (req.user._id || req.user.id);
+        const { receiverId, content } = req.body;
 
         if (!senderId) {
             return res.status(401).json({ message: "Non autorisé" });
@@ -69,7 +70,8 @@ const sendMessage = async (req, res) => {
 // @route   GET /api/chat/conversation/:userId
 const getConversation = async (req, res) => {
     try {
-        const { currentUserId, otherUserId } = req.body;
+        const currentUserId = req.user && (req.user._id || req.user.id);
+        const otherUserId = req.params.userId || req.body.otherUserId;
 
         if (!currentUserId) {
             return res.status(401).json({ message: "Non autorisé" });
@@ -107,7 +109,7 @@ const getConversation = async (req, res) => {
 // @route   GET /api/chat/conversations
 const getConversations = async (req, res) => {
     try {
-        const userId = req.body.userId;
+        const userId = req.user && (req.user._id || req.user.id);
 
         if (!userId) {
             return res.status(401).json({ message: "Non autorisé" });

@@ -50,17 +50,22 @@ app.options("*", cors());
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true, limit: '10mb' }));
 
-/* ------------------ STATIC FILES ------------------ */
-app.use(express.static(path.join(__dirname, '../public')));
-
-/* ------------------ TEST ROUTE ------------------ */
-app.get('/', (req, res) => {
+/* ------------------ TEST ROUTE & STATIC FILES ------------------ */
+// Elegant handling for root path:
+// - Return JSON if request accepts JSON (e.g., API client, test suite)
+// - Otherwise, serve index.html or fall through to static files
+app.get('/', (req, res, next) => {
+  if (req.headers.accept && req.headers.accept.includes('text/html')) {
+    return res.sendFile(path.join(__dirname, '../../public/index.html'));
+  }
   res.json({
     message: "Bienvenue sur l'API de Concordia !",
     status: "Serveur opérationnel",
     timestamp: new Date().toISOString()
   });
 });
+
+app.use(express.static(path.join(__dirname, '../../public')));
 
 /* ------------------ API ROUTES ------------------ */
 // Appliquer le rate-limiter global de l'API
@@ -72,6 +77,7 @@ app.use('/api/auth/register', authLimiter);
 
 app.use('/api/auth', authRoutes);
 app.use('/api/users', userRoutes);
+app.use('/api/user', userRoutes); // Support both singular and plural
 app.use('/api/matches', matchRoutes);
 app.use('/api/chat', chatRoutes);
 app.use('/api/search', searchRoutes);
@@ -80,23 +86,23 @@ app.use('/api/admin', adminRoutes);
 
 /* ------------------ HTML ROUTES ------------------ */
 app.get('/login', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/login.html'));
+  res.sendFile(path.join(__dirname, '../../public/login.html'));
 });
 
 app.get('/inscription', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/inscription.html'));
+  res.sendFile(path.join(__dirname, '../../public/inscription.html'));
 });
 
 app.get('/decouverte', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/decouverte_filtre.html'));
+  res.sendFile(path.join(__dirname, '../../public/decouverte_filtre.html'));
 });
 
 app.get('/messages', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/message.html'));
+  res.sendFile(path.join(__dirname, '../../public/message.html'));
 });
 
 app.get('/settings', (req, res) => {
-  res.sendFile(path.join(__dirname, '../public/settings.html'));
+  res.sendFile(path.join(__dirname, '../../public/settings.html'));
 });
 
 /* ------------------ ERRORS ------------------ */
