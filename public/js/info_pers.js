@@ -44,19 +44,25 @@ function initFields(){
     document.getElementById("bio").innerHTML = profile.bio || "";
     document.getElementById("interest-tags").innerHTML = "";
 
-    for(let interest of profile.interets){
-        document.getElementById("interest-tags").innerHTML += `
-            <div class="tag">
-                <i class='${loisirsIcons[interest]}'></i>
-                ${interest}
-            </div>`;
+    if (profile.interets && Array.isArray(profile.interets)) {
+        for(let interest of profile.interets){
+            const iconClass = loisirsIcons[interest] || "fa-solid fa-star";
+            document.getElementById("interest-tags").innerHTML += `
+                <div class="tag">
+                    <i class='${iconClass}'></i>
+                    ${interest}
+                </div>`;
+        }
     }
-    if(profile.photos.lenght >= 2){
-        for(let i=1; i < profile.photos.lenght; i++){
-            document.getElementById("gallery").innerHTML += `
-                <li>
-                    <img src="${profile.photos[i]}" alt="Photo galerie 1"/>
-                </li>`;
+    if(profile.photos && profile.photos.length >= 2){
+        for(let i=1; i < profile.photos.length; i++){
+            const galleryElem = document.getElementById("gallery");
+            if (galleryElem) {
+                galleryElem.innerHTML += `
+                    <li>
+                        <img src="${profile.photos[i]}" alt="Photo galerie ${i}"/>
+                    </li>`;
+            }
         }
     }
 

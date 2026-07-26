@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Messagerie Concordia</title>
-    <script type="module" src="./js/message2.js"></script>    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="https://cdn.socket.io/4.7.5/socket.io.min.js"></script>
+    <script type="module" src="./js/message2.js"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="./css/message.css"> 
     <link href='https://cdn.boxicons.com/3.0.6/fonts/basic/boxicons.min.css' rel='stylesheet'>
     <link href='https://cdn.boxicons.com/3.0.6/fonts/brands/boxicons-brands.min.css' rel='stylesheet'>
@@ -21,9 +23,9 @@
             </div>
             <div class="header-right">
                 <nav class="main-nav">
-                    <a href="#" class="nav-link">Browse</a>
-                    <a href="#" class="nav-link active">Matches</a>
-                    <a href="#" class="nav-link">Profile</a>
+                    <a href="./decouverte_filtre.html" class="nav-item nav-link">Browse</a>
+                    <a href="./message.html" class="nav-item nav-link active">Matches</a>
+                    <a href="./settings.html" class="nav-item nav-link">Profile</a>
                 </nav>
                 <div class="user-avatar" style="background-image: url('https://via.placeholder.com/40');"></div>
             </div>
@@ -156,7 +158,6 @@
         </div>
     </div>
 
-    <script src="./js/message.js"></script>
 </body>
 </html>
 

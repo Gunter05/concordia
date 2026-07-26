@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function() {
-    fetch('https://nexus-api-ill3.onrender.com/api/users/') // Mets ici l'URL de ton API
+    fetch('/api/users/') // Mets ici l'URL de ton API
         .then(response => response.json())
         .then(users => {
             const stack = document.getElementById("stack");
@@ -8,10 +8,11 @@ document.addEventListener("DOMContentLoaded", function() {
             users.forEach(user => {
                 const card = document.createElement("div");
                 card.className = "card";
+                const firstPhoto = (user.photos && user.photos[0]) || user.photo || './images/default.jpg';
                 card.innerHTML = `
                     <div class="image-box" id="${user._id}">
                         <span class="badge left" style="color: white;">${user.relation || "Relation sérieuse"}</span>
-                        <img src="${user.photo || './images/default.jpg'}" alt="Profil">
+                        <img src="${firstPhoto}" alt="Profil">
                         <span class="badge bottomleft">
                             <h2 style="color: white;">${user.nom}, ${user.age || ""}</h2>
                             <p class="info" style="color: white;">${user.profession || ""}</p>

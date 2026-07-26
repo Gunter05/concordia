@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", function(){
     document.getElementById("info-update-submit").addEventListener("click", function(){
         var xhr = new XMLHttpRequest();
         console.log("profile id: " + profile._id);
-        xhr.open("PUT", `https://nexus-api-ill3.onrender.com/api/users/${profile._id}`, true);
+        xhr.open("PUT", `/api/users/${profile._id}`, true);
 
         xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
         xhr.setRequestHeader('Authorization', `Bearer ${profile.token}`);

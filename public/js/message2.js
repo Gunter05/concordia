@@ -14,6 +14,68 @@ const chatUserStatus = document.getElementById('chat-user-status');
 
 let currentUserId = null;
 let loggedInUser = JSON.parse(localStorage.getItem('loggedInUser'));
+let socket = null;
+
+// Initialize Socket.io client if available
+if (window.io) {
+    socket = window.io(window.location.origin, {
+        withCredentials: true
+    });
+    console.log('[message2.js] Socket.io client initialized');
+
+    socket.on('connect', () => {
+        console.log('[message2.js] Socket connected:', socket.id);
+        if (loggedInUser && loggedInUser._id) {
+            socket.emit('join', loggedInUser._id);
+            socket.emit('setup', loggedInUser._id);
+            socket.emit('register', loggedInUser._id);
+        }
+    });
+
+    const handleIncomingMessage = (message) => {
+        console.log('[message2.js] Real-time message received:', message);
+
+        // Extract sender and receiver IDs
+        const msgSenderId = message.sender?._id || message.sender;
+        const msgReceiverId = message.receiver?._id || message.receiver;
+
+        // Check if the message belongs to the current conversation
+        if (currentUserId && (msgSenderId === currentUserId || msgReceiverId === currentUserId)) {
+            // Check if the message is already in the UI (to avoid duplicates)
+            const existingMessages = Array.from(messagesContainer.querySelectorAll('.message-text'));
+            const isDuplicate = existingMessages.some(elem => elem.textContent === message.content);
+
+            if (!isDuplicate) {
+                const messageElement = createMessageElement(message);
+                messagesContainer.appendChild(messageElement);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                messagesContainer.style.display = 'block';
+                emptyMessagesState.style.display = 'none';
+            }
+        }
+
+        // Refresh conversations to update the sidebar preview
+        loadConversations();
+    };
+
+    socket.on('message', handleIncomingMessage);
+    socket.on('message received', handleIncomingMessage);
+    socket.on('receive_message', handleIncomingMessage);
+} else {
+    console.warn('[message2.js] Socket.io client library not loaded. Falling back to HTTP polling.');
+}
+
+// Fallback Polling Interval (every 5 seconds)
+setInterval(() => {
+    if (currentUserId && (!socket || !socket.connected)) {
+        console.log('[message2.js] Fallback polling for messages...');
+        loadMessages(currentUserId);
+    }
+    if (!socket || !socket.connected) {
+        loadConversations();
+    }
+}, 5000);
 
 /**
  * Initialize the messaging interface
@@ -111,7 +173,7 @@ function createDiscussionElement(conversation, otherParticipant, isActive = fals
     const unreadCount = conversation.lastMessage?.read ? 0 : 1;
     const userName = otherParticipant.nom || 'Unknown';
     const userAvatar = otherParticipant.photos?.[0] 
-        ? `https://nexus-api-ill3.onrender.com/api/uploads/${otherParticipant.photos[0]}`
+        ? `/api/uploads/${otherParticipant.photos[0]}`
         : 'https://via.placeholder.com/56';
 
     div.innerHTML = `
@@ -159,6 +221,16 @@ function selectDiscussion(userId, discussionElement) {
     const userAvatar = discussionElement.querySelector('.avatar-img').style.backgroundImage;
     chatUserName.textContent = userName;
     chatUserAvatar.style.backgroundImage = userAvatar;
+
+    // Emit Socket.io join events
+    if (socket && socket.connected) {
+        const conversationId = discussionElement.getAttribute('data-conversation-id');
+        if (conversationId) {
+            socket.emit('join_chat', conversationId);
+            socket.emit('joinRoom', conversationId);
+        }
+        socket.emit('join', userId);
+    }
 
     // Load messages for this conversation
     loadMessages(userId);
@@ -279,6 +351,23 @@ function handleSendMessage() {
             loadConversations();
             // Scroll to bottom
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // Emit Socket.io events for real-time messaging
+            if (socket && socket.connected) {
+                const activeDiscussion = document.querySelector('.discussion-item.active');
+                const conversationId = activeDiscussion ? activeDiscussion.getAttribute('data-conversation-id') : null;
+
+                const socketPayload = {
+                    senderId: loggedInUser._id,
+                    receiverId: currentUserId,
+                    conversationId: conversationId,
+                    content: messageText,
+                    timestamp: new Date()
+                };
+
+                socket.emit('new message', socketPayload);
+                socket.emit('chat message', socketPayload);
+            }
 
             // Clear the input
             messageInput.value = '';
