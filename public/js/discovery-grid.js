@@ -4,7 +4,7 @@ let profiles = []; // Array to hold all user profiles
 let filteredProfiles = [];
 let currentUser = null;
 
-const API_URL = 'https://nexus-api-ill3.onrender.com/api/users/api';
+const API_URL = '/api';
 
 // Logging utility
 const log = (msg, data = null) => console.log(`[Discovery-Grid.js] ${msg}`, data || '');
@@ -296,7 +296,7 @@ async function init() {
 
         // Charger les profils depuis l'API externe
         try {
-            const response = await fetch('https://nexus-api-ill3.onrender.com/api/users/');
+            const response = await fetch('/api/users/');
             const users = await response.json();
             log('Utilisateurs chargés depuis l\'API externe:', users);
             

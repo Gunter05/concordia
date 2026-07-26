@@ -185,7 +185,7 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.textContent = '⏳ Création en cours...';
             btn.disabled = true;
 
-            const response = await fetch('https://nexus-api-ill3.onrender.com/api/auth/register', {
+            const response = await fetch('/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

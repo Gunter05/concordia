@@ -3,7 +3,7 @@ let loggedInUser= JSON.parse(localStorage.getItem("loggedInUser"));
 export function sendMessage(toUserId, messageText, callback) {
     var xhr = new XMLHttpRequest();
 
-    xhr.open("POST", "https://nexus-api-ill3.onrender.com/api/chat/send", true);
+    xhr.open("POST", "/api/chat/send", true);
     
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.withCredentials= true;
@@ -36,7 +36,7 @@ export function sendMessage(toUserId, messageText, callback) {
 export function fetchMessages(withUserId, callback) {
     var xhr = new XMLHttpRequest();
 
-    xhr.open("POST", "https://nexus-api-ill3.onrender.com/api/chat/conversation/messages", true);
+    xhr.open("POST", "/api/chat/conversation/messages", true);
     
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.withCredentials= true;
@@ -68,7 +68,7 @@ export function fetchMessages(withUserId, callback) {
 export function fetchConversations(callback){
     var xhr = new XMLHttpRequest();
 
-    xhr.open("POST", "https://nexus-api-ill3.onrender.com/api/chat/conversations", true);
+    xhr.open("POST", "/api/chat/conversations", true);
     
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
     xhr.withCredentials= true;
