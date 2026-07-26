@@ -15,9 +15,11 @@ import { validateMessage, validateConversationId } from '../validators/messageVa
 const router = express.Router();
 
 // Routes protégées
-router.post('/send', validateMessage, sendMessage);
-router.post('/conversation/messages', getConversation);
-router.post('/conversations', getConversations);
+router.post('/send', authMiddleware, validateMessage, sendMessage);
+router.post('/conversation/messages', authMiddleware, getConversation);
+router.get('/conversation/:userId', authMiddleware, getConversation);
+router.post('/conversations', authMiddleware, getConversations);
+router.get('/conversations', authMiddleware, getConversations);
 router.get('/unread', authMiddleware, getUnreadMessages);
 router.post('/block/:userId', authMiddleware, validateConversationId, blockUser);
 router.post('/unblock/:userId', authMiddleware, validateConversationId, unblockUser);

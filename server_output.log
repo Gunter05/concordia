@@ -1,0 +1,10 @@
+
+> site-rencontre@1.0.0 start
+> node server.mjs
+
+[dotenv@17.2.3] injecting env (7) from .env -- tip: 🔑 add access controls to secrets: https://dotenvx.com/ops
+Environnement de test détecté - Connexion MongoDB réelle ignorée
+==================================================
+ Serveur démarré sur le port : 5000
+ Environment : test
+==================================================

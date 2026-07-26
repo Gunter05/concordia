@@ -6,6 +6,9 @@ export function sendMessage(toUserId, messageText, callback) {
     xhr.open("POST", "/api/chat/send", true);
     
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    if (loggedInUser && loggedInUser.token) {
+        xhr.setRequestHeader('Authorization', `Bearer ${loggedInUser.token}`);
+    }
     xhr.withCredentials= true;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) { // 4 = DONE
@@ -39,6 +42,9 @@ export function fetchMessages(withUserId, callback) {
     xhr.open("POST", "/api/chat/conversation/messages", true);
     
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    if (loggedInUser && loggedInUser.token) {
+        xhr.setRequestHeader('Authorization', `Bearer ${loggedInUser.token}`);
+    }
     xhr.withCredentials= true;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) { // 4 = DONE
@@ -71,6 +77,9 @@ export function fetchConversations(callback){
     xhr.open("POST", "/api/chat/conversations", true);
     
     xhr.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+    if (loggedInUser && loggedInUser.token) {
+        xhr.setRequestHeader('Authorization', `Bearer ${loggedInUser.token}`);
+    }
     xhr.withCredentials= true;
     xhr.onreadystatechange = function() {
         if (xhr.readyState === 4) { // 4 = DONE

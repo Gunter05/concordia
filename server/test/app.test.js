@@ -43,6 +43,41 @@ test('POST /api/auth/register - Should return 400 Bad Request if empty payload',
     assert.ok(fieldsWithErrors.includes('password'));
 });
 
+test('POST /api/chat/send - Should return 401 Unauthorized if Authorization header is missing', async (t) => {
+    const response = await request(app)
+        .post('/api/chat/send')
+        .send({ receiverId: '655c1e0f0f1b2c3d4e5f6a7b', content: 'Hello' })
+        .expect(401);
+
+    assert.strictEqual(response.body.message, 'Token manquant');
+});
+
+test('GET /api/chat/conversations - Should return 401 Unauthorized if Authorization header is missing', async (t) => {
+    const response = await request(app)
+        .get('/api/chat/conversations')
+        .expect(401);
+
+    assert.strictEqual(response.body.message, 'Token manquant');
+});
+
+test('GET /api/chat/conversation/:userId - Should return 401 Unauthorized if Authorization header is missing', async (t) => {
+    const response = await request(app)
+        .get('/api/chat/conversation/655c1e0f0f1b2c3d4e5f6a7b')
+        .expect(401);
+
+    assert.strictEqual(response.body.message, 'Token manquant');
+});
+
+test('POST /api/chat/send - Should return 401 Token invalide if token is invalid', async (t) => {
+    const response = await request(app)
+        .post('/api/chat/send')
+        .set('Authorization', 'Bearer invalid_token_value_xyz')
+        .send({ receiverId: '655c1e0f0f1b2c3d4e5f6a7b', content: 'Hello' })
+        .expect(401);
+
+    assert.strictEqual(response.body.message, 'Token invalide');
+});
+
 test('POST /api/auth/login - Should return 400 Bad Request if missing credentials', async (t) => {
     const response = await request(app)
         .post('/api/auth/login')

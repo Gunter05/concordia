@@ -11,10 +11,21 @@ const error = (msg, err = null) => console.error(`[Swipe.js ERROR] ${msg}`, err 
 
 // ============= API CALLS =============
 
+const getAuthHeaders = () => {
+    const loggedInUser = JSON.parse(localStorage.getItem("loggedInUser"));
+    const token = loggedInUser?.token;
+    return token ? { 'Authorization': `Bearer ${token}` } : {};
+};
+
 async function getCurrentUser() {
     try {
         log('Récupération de l\'utilisateur connecté');
-        const response = await fetch(`${API_URL}/auth/me`, { credentials: 'include' });
+        const response = await fetch(`${API_URL}/auth/me`, {
+            headers: {
+                ...getAuthHeaders()
+            },
+            credentials: 'include'
+        });
         if (response.ok) {
             currentUser = await response.json();
             log('Utilisateur chargé:', currentUser);
@@ -33,6 +44,9 @@ async function getSearchProfiles(filters = {}) {
         log('Récupération des profils avec filtres:', filters);
         const queryParams = new URLSearchParams(filters);
         const response = await fetch(`${API_URL}/search/profiles?${queryParams}`, { 
+            headers: {
+                ...getAuthHeaders()
+            },
             credentials: 'include' 
         });
         if (response.ok) {
@@ -51,11 +65,13 @@ async function getSearchProfiles(filters = {}) {
 async function createMatch(userId) {
     try {
         log('Création d\'un match avec:', userId);
-        const response = await fetch(`${API_URL}/match/like`, {
+        const response = await fetch(`${API_URL}/matches/like/${userId}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({ userId })
+            headers: {
+                'Content-Type': 'application/json',
+                ...getAuthHeaders()
+            },
+            credentials: 'include'
         });
         if (response.ok) {
             const data = await response.json();
@@ -71,11 +87,13 @@ async function createMatch(userId) {
 async function passProfile(userId) {
     try {
         log('Passage du profil:', userId);
-        const response = await fetch(`${API_URL}/match/pass`, {
+        const response = await fetch(`${API_URL}/matches/pass/${userId}`, {
             method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            credentials: 'include',
-            body: JSON.stringify({ userId })
+            headers: {
+                'Content-Type': 'application/json',
+                ...getAuthHeaders()
+            },
+            credentials: 'include'
         });
         if (response.ok) {
             log('Profil passé');
